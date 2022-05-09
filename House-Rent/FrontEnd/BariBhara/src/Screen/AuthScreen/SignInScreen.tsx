@@ -5,9 +5,9 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 
 const SignInScreen: FC = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.safeAreaContainer}>
       <ScrollView contentContainerStyle={styles.scrollViewStyle}>
-        <View style={styles.container}>
+        <View>
           <Text>SignInScreen</Text>
         </View>
       </ScrollView>
@@ -18,7 +18,7 @@ const SignInScreen: FC = () => {
 export default SignInScreen;
 
 const styles = StyleSheet.create({
-  container: {
+  safeAreaContainer: {
     flex: 1,
   },
   scrollViewStyle: {
