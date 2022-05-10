@@ -1,14 +1,30 @@
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import React, {FC} from 'react';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-const SignInScreen: FC = () => {
+export type Props = {
+  navigation: any;
+};
+
+const SignInScreen: FC<Props> = ({navigation}: Props) => {
+  /**  Method to navigate signUP screen */
+  const NavigateMethod = () => navigation.navigate('SignUp');
+
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <ScrollView contentContainerStyle={styles.scrollViewStyle}>
         <View>
           <Text>SignInScreen</Text>
+          <TouchableOpacity activeOpacity={0.5} onPress={NavigateMethod}>
+            <Text>Sign Up</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>

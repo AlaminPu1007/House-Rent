@@ -10,11 +10,10 @@ const widthToDp = (number: any) => {
   /// convert Given width to number
   const givenWidth = typeof number === 'number' ? number : parseFloat(number);
   //get plat form specific withToDp
-  const value = IosDevice
+  const widthValue = IosDevice
     ? PixelRatio.roundToNearestPixel((width * givenWidth) / 100) + 5
     : PixelRatio.roundToNearestPixel((width * givenWidth) / 100);
-  /// return to convert given value into pixel ratio value
-  return value;
+  return widthValue;
 };
 
 ///Convert to Height wise
@@ -24,11 +23,10 @@ const heightToDp = (number: any) => {
   //if percentage
   const givenHeight = typeof number === 'number' ? number : parseFloat(number);
   //get plat form specific withToDp
-  const value = IosDevice
-    ? PixelRatio.roundToNearestPixel((height * givenHeight) / 100) + 5
+  const heightValue = IosDevice
+    ? PixelRatio.roundToNearestPixel((height * givenHeight) / 100) + 3
     : PixelRatio.roundToNearestPixel((height * givenHeight) / 100);
-  /// return to convert given value into pixel ratio value
-  return value;
+  return heightValue;
 };
 
 //responsive font size
@@ -42,11 +40,10 @@ const ResponsiveFontSize = (number: any) => {
   //get new size
   const newSize = givenNumber * scale;
   // get platform specific value
-  const value = IosDevice
-    ? Math.round(PixelRatio.roundToNearestPixel(newSize))
+  const fontSize = IosDevice
+    ? Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2 + 2
     : Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2;
-
-  return value;
+  return fontSize;
 };
 
 export {widthToDp, heightToDp, ResponsiveFontSize};
