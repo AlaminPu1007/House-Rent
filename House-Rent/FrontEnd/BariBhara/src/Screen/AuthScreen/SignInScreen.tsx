@@ -55,7 +55,7 @@ const SignInScreen = ({navigation}: Props) => {
                 </View> */}
 
                 {/* flag View */}
-                <View style={styles.VerticalBorderStyle} />
+                {/* <View style={styles.VerticalBorderStyle} /> */}
 
                 {/* Mobile Code View */}
                 {/* <View style={styles.CodeView}>
@@ -253,6 +253,7 @@ const styles = StyleSheet.create({
     fontSize: ResponsiveFontSize(15),
     fontWeight: '700',
     letterSpacing: 0.5,
+    marginLeft: widthToDp(1),
   },
   PasswordView: {
     flexDirection: 'row',
@@ -271,7 +272,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     letterSpacing: 0.5,
     width: '85%',
-    marginLeft: ResponsiveFontSize(10),
+    marginLeft: widthToDp(1),
   },
   passwordEyeIcon: {
     width: '12%',

@@ -99,7 +99,7 @@ const SignUpScreen = ({navigation}: Props) => {
                 </View> */}
 
                 {/* flag View */}
-                <View style={styles.VerticalBorderStyle} />
+                {/* <View style={styles.VerticalBorderStyle} /> */}
 
                 {/* Mobile Code View */}
                 {/* <View style={styles.CodeView}>
@@ -248,6 +248,7 @@ const styles = StyleSheet.create({
     fontSize: ConstValue.regularFontSize,
     fontWeight: '700',
     letterSpacing: 0.5,
+    marginLeft: widthToDp(1),
   },
   NameView: {
     flexDirection: 'row',
@@ -274,7 +275,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     letterSpacing: 0.5,
     width: '85%',
-    marginLeft: ResponsiveFontSize(10),
+    marginLeft: widthToDp(1),
   },
   passwordEyeIcon: {
     width: '12%',
@@ -303,7 +304,7 @@ const styles = StyleSheet.create({
     paddingTop: heightToDp(2),
   },
   ForgetPasswordText: {
-    fontSize: ResponsiveFontSize(14),
+    fontSize: ConstValue.regularFontSize,
     color: ColorValue.Login_Header_Title,
   },
   RegisterUserView: {
@@ -327,7 +328,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   LinkTextStyle: {
-    fontSize: ResponsiveFontSize(14),
+    fontSize: ConstValue.regularFontSize,
     color: ColorValue.Login_Header_Title,
     fontWeight: '700',
   },
@@ -357,7 +358,7 @@ const styles = StyleSheet.create({
     marginLeft: widthToDp(2),
   },
   ErrorText: {
-    fontSize: ResponsiveFontSize(14),
+    fontSize: ConstValue.regularFontSize,
     color: ColorValue.TextInput_Error_Border,
   },
 });
