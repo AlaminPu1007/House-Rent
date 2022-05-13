@@ -7,7 +7,7 @@ import {
   StatusBar,
   TextInput,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -20,6 +20,7 @@ import {
 } from '../../component/Responsive';
 import Header from './Header';
 
+//get props of auth root stack
 type Props = NativeStackScreenProps<AuthRootStack, 'SignUp'>;
 
 const SignInScreen = ({navigation}: Props) => {
