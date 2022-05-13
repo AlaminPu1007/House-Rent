@@ -1,4 +1,6 @@
 const ColorValue = {
+  //Header background color
+  Header_background: '#5D00E2',
   StatusBar_Background: '#f9f9f9',
   Login_Header_Title: '#3a4a5c',
   Mobile_TextInput_Border: '#e6e8eb',

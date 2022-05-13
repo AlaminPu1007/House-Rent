@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import ColorValue from '../../component/Color';
+import ConstValue from '../../component/ConstValue';
 //import Responsive height, width & fontsize
 import {
   widthToDp,
@@ -38,7 +39,9 @@ const Header: FC<Props> = ({navigation, Value, title}) => {
         <Text style={styles.Title}>{title}</Text>
       </View>
       {/* Null View Area */}
-      <View />
+      <View>
+        <Text>{'    '}</Text>
+      </View>
     </View>
   );
 };
@@ -48,7 +51,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#5D00E2',
+    backgroundColor: ColorValue.Header_background,
     paddingVertical: heightToDp(2),
   },
   Title: {
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
     color: ColorValue.Tab_Background_Color,
   },
   BackArrow: {
-    fontSize: ResponsiveFontSize(14),
+    fontSize: ConstValue.regularFontSize,
     fontWeight: '500',
     color: ColorValue.Tab_Background_Color,
   },

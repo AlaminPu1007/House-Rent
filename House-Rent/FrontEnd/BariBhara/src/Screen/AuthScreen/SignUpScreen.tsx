@@ -18,6 +18,7 @@ import {
 } from '../../component/Responsive';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Header from './Header';
+import ConstValue from '../../component/ConstValue';
 
 //get props of auth root stack
 type Props = NativeStackScreenProps<AuthRootStack, 'SignIn'>;
@@ -64,6 +65,27 @@ const SignUpScreen = ({navigation}: Props) => {
               {/* Name Validation Error */}
             </View>
             {/* password TextInput Box */}
+
+            {/* password TextInput Box */}
+            <View>
+              <Text style={styles.PhoneTextStyle}>Enter your password</Text>
+              <View style={styles.PasswordView}>
+                <TextInput
+                  placeholder="*******"
+                  underlineColorAndroid="transparent"
+                  style={styles.PasswordTextInputStyle}
+                  // secureTextEntry={passwordVisible}
+                  // value={password}
+                  // ref={input => {
+                  //   secondTextInput = input;
+                  // }}
+                  // onChangeText={OnChangePassword}
+                  autoCorrect={false}
+                  blurOnSubmit={false}
+                  returnKeyType="done"
+                />
+              </View>
+            </View>
             {/* Phone Number TextInput Box */}
             <View>
               <Text style={styles.PhoneTextStyle}>
@@ -112,27 +134,6 @@ const SignUpScreen = ({navigation}: Props) => {
 
               {/* Name Validation Error */}
               {/* Mobile Number */}
-            </View>
-            {/* Phone Number TextInput Box */}
-            {/* password TextInput Box */}
-            <View>
-              <Text style={styles.PhoneTextStyle}>Enter your password</Text>
-              <View style={styles.PasswordView}>
-                <TextInput
-                  placeholder="*******"
-                  underlineColorAndroid="transparent"
-                  style={styles.PasswordTextInputStyle}
-                  // secureTextEntry={passwordVisible}
-                  // value={password}
-                  // ref={input => {
-                  //   secondTextInput = input;
-                  // }}
-                  // onChangeText={OnChangePassword}
-                  autoCorrect={false}
-                  blurOnSubmit={false}
-                  returnKeyType="done"
-                />
-              </View>
             </View>
 
             {/* Login Button View */}
@@ -199,9 +200,10 @@ const styles = StyleSheet.create({
     borderRadius: ResponsiveFontSize(8),
   },
   PhoneTextStyle: {
-    fontSize: ResponsiveFontSize(15),
+    fontSize: ConstValue.regularFontSize,
     color: ColorValue.Mobile_TextInput_Text,
     paddingVertical: heightToDp(2),
+    fontWeight: 'bold',
   },
   FlagView: {
     width: '15%',
@@ -213,7 +215,7 @@ const styles = StyleSheet.create({
   },
   CodeTextStyle: {
     color: ColorValue.Mobile_TextInput_Text,
-    fontSize: ResponsiveFontSize(15),
+    fontSize: ConstValue.regularFontSize,
     fontWeight: '700',
     letterSpacing: 0.5,
   },
@@ -244,7 +246,7 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
     height: ResponsiveFontSize(30),
     color: ColorValue.Mobile_TextInput_Text,
-    fontSize: ResponsiveFontSize(15),
+    fontSize: ConstValue.regularFontSize,
     fontWeight: '700',
     letterSpacing: 0.5,
   },
@@ -269,7 +271,7 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
     height: ResponsiveFontSize(30),
     color: ColorValue.Mobile_TextInput_Text,
-    fontSize: ResponsiveFontSize(15),
+    fontSize: ConstValue.regularFontSize,
     fontWeight: '700',
     letterSpacing: 0.5,
     width: '85%',
@@ -336,7 +338,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   UserTypeText: {
-    fontSize: ResponsiveFontSize(15),
+    fontSize: ConstValue.regularFontSize,
     fontWeight: '600',
     color: ColorValue.Login_Header_Title,
   },
