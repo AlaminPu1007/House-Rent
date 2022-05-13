@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {FC} from 'react';
+import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthRootStack} from '../../NavigationFlow';
 import ColorValue from '../../component/Color';
@@ -88,25 +88,23 @@ const SignUpScreen = ({navigation}: Props) => {
             </View>
             {/* Phone Number TextInput Box */}
             <View>
-              <Text style={styles.PhoneTextStyle}>
-                Enter your mobile number
-              </Text>
+              <Text style={styles.PhoneTextStyle}>Enter your email</Text>
               {/* Mobile Number */}
               <View style={styles.MobileNumber}>
                 {/* flag View */}
-                <View style={styles.FlagView}>
+                {/* <View style={styles.FlagView}>
                   <View style={styles.FlagStyle}>
                     <View style={styles.FlagRound} />
                   </View>
-                </View>
+                </View> */}
 
                 {/* flag View */}
                 <View style={styles.VerticalBorderStyle} />
 
                 {/* Mobile Code View */}
-                <View style={styles.CodeView}>
+                {/* <View style={styles.CodeView}>
                   <Text style={styles.CodeTextStyle}>+880</Text>
-                </View>
+                </View> */}
                 {/* Mobile Code View */}
                 {/* TextInput */}
                 <View style={styles.PhoneTextInputView}>
@@ -115,12 +113,13 @@ const SignUpScreen = ({navigation}: Props) => {
                     //   firstTextInput = input;
                     // }}
                     style={styles.MobileTextInputStyle}
-                    placeholder="1XXXXXXXXX"
+                    placeholder="Enter your email"
                     underlineColorAndroid="transparent"
                     // onSubmitEditing={() => {
                     //   secondTextInput.focus();
                     // }}
                     // value={Mobile}
+
                     maxLength={11}
                     keyboardType="number-pad"
                     // onChangeText={OnChangeMobile}
