@@ -6,7 +6,7 @@ import SignInScreen from './Screen/AuthScreen/SignInScreen';
 import SignUpScreen from './Screen/AuthScreen/SignUpScreen';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
-type AuthRootStack = {
+export type AuthRootStack = {
   SignIn: undefined;
   SignUp: undefined;
 };
