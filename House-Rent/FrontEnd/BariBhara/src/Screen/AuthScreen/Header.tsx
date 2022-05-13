@@ -26,7 +26,7 @@ const Header: FC<Props> = ({navigation, Value, title}) => {
             activeOpacity={0.5}
             style={styles.BackButtonStyle}
             onPress={NavigateToBackMethod}>
-            <Text>Back</Text>
+            <Text style={styles.BackArrow}>Back</Text>
           </TouchableOpacity>
         </View>
       ) : (
@@ -37,10 +37,8 @@ const Header: FC<Props> = ({navigation, Value, title}) => {
       <View>
         <Text style={styles.Title}>{title}</Text>
       </View>
-      {/* Header Title  */}
       {/* Null View Area */}
       <View />
-      {/* Null View Area */}
     </View>
   );
 };
@@ -50,13 +48,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: ColorValue.StatusBar_Background,
+    backgroundColor: '#5D00E2',
     paddingVertical: heightToDp(2),
   },
   Title: {
     fontSize: ResponsiveFontSize(18),
     fontWeight: '700',
-    color: ColorValue.Login_Header_Title,
+    color: ColorValue.Tab_Background_Color,
+  },
+  BackArrow: {
+    fontSize: ResponsiveFontSize(14),
+    fontWeight: '500',
+    color: ColorValue.Tab_Background_Color,
   },
   BackButtonStyle: {
     paddingHorizontal: widthToDp(3),
