@@ -13,6 +13,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthRootStack} from '../../NavigationFlow';
 import ColorValue from '../../component/Color';
+import {useSelector, shallowEqual} from 'react-redux';
 import {
   ResponsiveFontSize,
   heightToDp,
@@ -24,6 +25,9 @@ import Header from './Header';
 type Props = NativeStackScreenProps<AuthRootStack, 'SignUp'>;
 
 const SignInScreen = ({navigation}: Props) => {
+  const State = useSelector(state => state.authReducer);
+  console.log(State);
+
   /**  Method to navigate signUP screen */
   const NavigateMethod = () => navigation.navigate('SignUp');
 
