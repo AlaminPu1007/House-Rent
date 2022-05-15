@@ -2,13 +2,13 @@
 import {Action, ActionType} from './AuthActionCreator';
 
 //define state variable with their type
-interface stateValue {
+export interface authState {
   counter: Number;
 }
 
 //our initial state define here
 //this the initial value of our state
-const initialState: stateValue = {
+const initialState: authState = {
   counter: 0,
 };
 

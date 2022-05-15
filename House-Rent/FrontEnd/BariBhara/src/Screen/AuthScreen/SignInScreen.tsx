@@ -20,13 +20,13 @@ import {
   widthToDp,
 } from '../../component/Responsive';
 import Header from './Header';
+import {RootState} from '../../redux/RootReducers';
 
 //get props of auth root stack
 type Props = NativeStackScreenProps<AuthRootStack, 'SignUp'>;
 
 const SignInScreen = ({navigation}: Props) => {
-  const State = useSelector(state => state.authReducer);
-  console.log(State);
+  const State = useSelector<RootState>(state => state.authReducer);
 
   /**  Method to navigate signUP screen */
   const NavigateMethod = () => navigation.navigate('SignUp');
