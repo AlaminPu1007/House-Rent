@@ -21,11 +21,13 @@ import {
 } from '../../component/Responsive';
 import Header from './Header';
 import {RootState} from '../../redux/RootReducers';
+import ConstValue from '../../component/ConstValue';
 
 //get props of auth root stack
 type Props = NativeStackScreenProps<AuthRootStack, 'SignUp'>;
 
 const SignInScreen = ({navigation}: Props) => {
+  //Rootstack is came from our root ruducer
   const State = useSelector<RootState>(state => state.authReducer);
 
   /**  Method to navigate signUP screen */
@@ -51,22 +53,7 @@ const SignInScreen = ({navigation}: Props) => {
               <Text style={styles.PhoneTextStyle}>Enter your email</Text>
               {/* Mobile Number */}
               <View style={styles.MobileNumber}>
-                {/* flag View */}
-                {/* <View style={styles.FlagView}>
-                  <View style={styles.FlagStyle}>
-                    <View style={styles.FlagRound} />
-                  </View>
-                </View> */}
-
-                {/* flag View */}
-                {/* <View style={styles.VerticalBorderStyle} /> */}
-
-                {/* Mobile Code View */}
-                {/* <View style={styles.CodeView}>
-                  <Text style={styles.CodeTextStyle}>+880</Text>
-                </View> */}
-                {/* Mobile Code View */}
-                {/* TextInput */}
+                {/* TextInput component goes here */}
                 <View style={styles.PhoneTextInputView}>
                   <TextInput
                     style={styles.MobileTextInputStyle}
@@ -85,10 +72,8 @@ const SignInScreen = ({navigation}: Props) => {
                     returnKeyType="next"
                   />
                 </View>
-                {/* TextInput */}
               </View>
             </View>
-            {/* Phone Number TextInput Box */}
             {/* password TextInput Box */}
             <View>
               <Text style={styles.PhoneTextStyle}>Enter your password</Text>
@@ -107,29 +92,6 @@ const SignInScreen = ({navigation}: Props) => {
                   blurOnSubmit={false}
                   returnKeyType="done"
                 />
-                {/* <View style={styles.passwordEyeIcon}>
-                  {passwordVisible ? (
-                    <TouchableOpacity
-                      activeOpacity={0.5}
-                      onPress={SecurePasswordFunction}>
-                      <Feather
-                        name="eye-off"
-                        size={ResponsiveFontSize(20)}
-                        color={ColorValue.Location_Arrow_Icon}
-                      />
-                    </TouchableOpacity>
-                  ) : (
-                    <TouchableOpacity
-                      activeOpacity={0.5}
-                      onPress={SecurePasswordFunction}>
-                      <Feather
-                        name="eye"
-                        size={ResponsiveFontSize(20)}
-                        color={ColorValue.Location_Arrow_Icon}
-                      />
-                    </TouchableOpacity>
-                  )}
-                </View> */}
               </View>
             </View>
             {/* password TextInput Box */}
@@ -188,7 +150,6 @@ const styles = StyleSheet.create({
   },
   ContentStyle: {
     flexGrow: 1,
-    // paddingVertical: heightToDp(1),
   },
   BodyViewStyle: {
     flex: 1,
@@ -209,52 +170,20 @@ const styles = StyleSheet.create({
     borderRadius: ResponsiveFontSize(8),
   },
   PhoneTextStyle: {
-    fontSize: ResponsiveFontSize(15),
+    fontSize: ConstValue.regularFontSize,
     color: ColorValue.Mobile_TextInput_Text,
     paddingVertical: heightToDp(2),
   },
-  FlagView: {
-    width: '15%',
-    alignItems: 'center',
-  },
-  CodeView: {
-    width: '15%',
-    alignItems: 'center',
-  },
-  CodeTextStyle: {
-    color: ColorValue.Mobile_TextInput_Text,
-    fontSize: ResponsiveFontSize(15),
-    fontWeight: '700',
-    letterSpacing: 0.5,
-  },
+
   PhoneTextInputView: {
     width: '65%',
-  },
-  FlagStyle: {
-    width: ResponsiveFontSize(30),
-    height: ResponsiveFontSize(18),
-    backgroundColor: '#006a4e',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  FlagRound: {
-    width: ResponsiveFontSize(12),
-    height: ResponsiveFontSize(12),
-    backgroundColor: '#f42a41',
-    borderRadius: ResponsiveFontSize(100),
-  },
-  VerticalBorderStyle: {
-    height: '80%',
-    borderWidth: 1,
-    borderColor: ColorValue.Mobile_TextInput_Border,
-    marginHorizontal: ResponsiveFontSize(8),
   },
   MobileTextInputStyle: {
     borderBottomColor: 'transparent',
     paddingVertical: 0,
     height: ResponsiveFontSize(30),
     color: ColorValue.Mobile_TextInput_Text,
-    fontSize: ResponsiveFontSize(15),
+    fontSize: ConstValue.regularFontSize,
     fontWeight: '700',
     letterSpacing: 0.5,
     marginLeft: widthToDp(1),
@@ -272,16 +201,13 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
     height: ResponsiveFontSize(30),
     color: ColorValue.Mobile_TextInput_Text,
-    fontSize: ResponsiveFontSize(15),
+    fontSize: ConstValue.regularFontSize,
     fontWeight: '700',
     letterSpacing: 0.5,
     width: '85%',
     marginLeft: widthToDp(1),
   },
-  passwordEyeIcon: {
-    width: '12%',
-    alignItems: 'center',
-  },
+
   LoginButtonView: {
     width: '100%',
     alignItems: 'center',
@@ -315,10 +241,7 @@ const styles = StyleSheet.create({
     width: '90%',
     alignItems: 'center',
   },
-  MobileTextInputStyleError: {
-    borderWidth: 1,
-    borderColor: ColorValue.TextInput_Error_Border,
-  },
+
   DeActiveLoginButton: {
     width: '100%',
     borderWidth: 1,
@@ -335,21 +258,5 @@ const styles = StyleSheet.create({
     fontSize: ResponsiveFontSize(14),
     color: ColorValue.Login_Header_Title,
     fontWeight: '700',
-  },
-  ErrorView: {
-    paddingTop: heightToDp(1),
-    width: '100%',
-    // flexWrap: 'wrap',
-    marginLeft: widthToDp(2),
-  },
-  ServerIssueView: {
-    paddingBottom: heightToDp(1),
-    width: '100%',
-    // flexWrap: 'wrap',
-    marginLeft: widthToDp(2),
-  },
-  ErrorText: {
-    fontSize: ResponsiveFontSize(14),
-    color: ColorValue.TextInput_Error_Border,
   },
 });
