@@ -2,6 +2,7 @@
 export enum ActionType {
   INCREMENT_OPERATION = 'INCREMENT_OPERATION',
   DECREMENT_OPERATION = 'DECREMENT_OPERATION',
+  PUSH_TEST_OBJECT = 'PUSH_TEST_OBJECT',
 }
 // for Increment operation
 interface actionIncrement {
@@ -14,5 +15,13 @@ interface actionDecrement {
   payload: Number;
 }
 
+interface testObjects {
+  type: ActionType.PUSH_TEST_OBJECT;
+  payload: {
+    name: String;
+    value: String;
+  };
+}
+
 // action will be passed through action: Action method
-export type Action = actionIncrement | actionDecrement;
+export type Action = actionIncrement | actionDecrement | testObjects;

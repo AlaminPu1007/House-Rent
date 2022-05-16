@@ -22,19 +22,21 @@ import {
 import Header from './Header';
 import {RootState} from '../../redux/RootReducers';
 import ConstValue from '../../component/ConstValue';
-import {IncMethod} from '../../redux/authRedux/AuthActionMethod';
+import {IncMethod, DecMethod} from '../../redux/authRedux/AuthActionMethod';
 import {useAppSelector} from '../../redux/RootReducers';
 
 //get props of auth root stack
 type Props = NativeStackScreenProps<AuthRootStack, 'SignUp'>;
 
-type HeaderProps = {
-  children: JSX.Element;
-};
-
 const SignInScreen = ({navigation}: Props) => {
   //Root stack is came from our root reducer
-  const {counter} = useAppSelector(state => state.authReducer, shallowEqual);
+  const {counter, post} = useAppSelector(
+    state => state.authReducer,
+    shallowEqual,
+  );
+  if (__DEV__) {
+    console.log(post, 'post');
+  }
 
   /**  Method to navigate signUP screen */
   const NavigateMethod = () => navigation.navigate('SignUp');
@@ -43,7 +45,7 @@ const SignInScreen = ({navigation}: Props) => {
     IncMethod();
   };
   const decMethodPage = () => {
-    IncMethod();
+    DecMethod();
   };
   return (
     <SafeAreaView style={styles.SafeAreaViewStyle}>
@@ -90,7 +92,7 @@ const SignInScreen = ({navigation}: Props) => {
                     keyboardType="number-pad"
                     // onChangeText={OnChangeMobile}
                     autoCorrect={false}
-                    autoFocus={true}
+                    autoFocus={false}
                     blurOnSubmit={false}
                     returnKeyType="next"
                   />
