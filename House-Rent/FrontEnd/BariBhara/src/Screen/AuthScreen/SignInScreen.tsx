@@ -20,7 +20,6 @@ import {
   widthToDp,
 } from '../../component/Responsive';
 import Header from './Header';
-import {RootState} from '../../redux/RootReducers';
 import ConstValue from '../../component/ConstValue';
 import {IncMethod, DecMethod} from '../../redux/authRedux/AuthActionMethod';
 import {useAppSelector} from '../../redux/RootReducers';
@@ -34,9 +33,6 @@ const SignInScreen = ({navigation}: Props) => {
     state => state.authReducer,
     shallowEqual,
   );
-  if (__DEV__) {
-    console.log(post, 'post');
-  }
 
   /**  Method to navigate signUP screen */
   const NavigateMethod = () => navigation.navigate('SignUp');
@@ -54,18 +50,6 @@ const SignInScreen = ({navigation}: Props) => {
       <View style={styles.HeaderView}>
         <Header navigation={navigation} title="SignIn" Value={0} />
       </View>
-      {/* Test counter method is added */}
-      <TouchableOpacity onPress={IncMethodPage}>
-        <Text>add</Text>
-      </TouchableOpacity>
-
-      <View>
-        <Text>{counter} </Text>
-      </View>
-
-      <TouchableOpacity onPress={decMethodPage}>
-        <Text>Dec</Text>
-      </TouchableOpacity>
       <ScrollView
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
