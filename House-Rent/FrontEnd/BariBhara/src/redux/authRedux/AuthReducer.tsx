@@ -20,6 +20,11 @@ const authReducer = (state = initialState, action: Action) => {
         ...state,
         counter: Number(state.counter) + Number(action.payload),
       };
+    case ActionType.DECREMENT_OPERATION:
+      return {
+        ...state,
+        counter: Number(state.counter) - Number(action.payload),
+      };
     default:
       return state;
   }

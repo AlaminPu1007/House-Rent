@@ -1,3 +1,7 @@
+/**
+ * Auth Related action define here
+ */
+
 import {ActionType} from './AuthActionCreator';
 import store from '../store';
 //distract dispatch from store

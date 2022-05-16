@@ -7,18 +7,13 @@ import {
   StatusBar,
   TextInput,
 } from 'react-native';
-import React from 'react';
+import React, {FC} from 'react';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthRootStack} from '../../NavigationFlow';
 import ColorValue from '../../component/Color';
-import {
-  useSelector,
-  shallowEqual,
-  useDispatch,
-  TypedUseSelectorHook,
-} from 'react-redux';
+import {shallowEqual} from 'react-redux';
 import {
   ResponsiveFontSize,
   heightToDp,
@@ -33,18 +28,21 @@ import {useAppSelector} from '../../redux/RootReducers';
 //get props of auth root stack
 type Props = NativeStackScreenProps<AuthRootStack, 'SignUp'>;
 
+type HeaderProps = {
+  children: JSX.Element;
+};
+
 const SignInScreen = ({navigation}: Props) => {
   //Root stack is came from our root reducer
-  const authState = useAppSelector(state => state.authReducer, shallowEqual);
-
-  if (__DEV__) {
-    console.log(authState.counter, 'from sign in screen');
-  }
+  const {counter} = useAppSelector(state => state.authReducer, shallowEqual);
 
   /**  Method to navigate signUP screen */
   const NavigateMethod = () => navigation.navigate('SignUp');
   // inc method
   const IncMethodPage = () => {
+    IncMethod();
+  };
+  const decMethodPage = () => {
     IncMethod();
   };
   return (
@@ -57,6 +55,14 @@ const SignInScreen = ({navigation}: Props) => {
       {/* Test counter method is added */}
       <TouchableOpacity onPress={IncMethodPage}>
         <Text>add</Text>
+      </TouchableOpacity>
+
+      <View>
+        <Text>{counter} </Text>
+      </View>
+
+      <TouchableOpacity onPress={decMethodPage}>
+        <Text>Dec</Text>
       </TouchableOpacity>
       <ScrollView
         keyboardShouldPersistTaps="handled"

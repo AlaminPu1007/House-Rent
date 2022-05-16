@@ -1,3 +1,8 @@
+/**
+ * Redux root store define here
+ * our all reducer method pass it through store
+ */
+
 import {createStore} from 'redux';
 import rootReducers from './RootReducers';
 
