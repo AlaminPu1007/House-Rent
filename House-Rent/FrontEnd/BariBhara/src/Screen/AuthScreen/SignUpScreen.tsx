@@ -91,22 +91,7 @@ const SignUpScreen = ({navigation}: Props) => {
               <Text style={styles.PhoneTextStyle}>Enter your email</Text>
               {/* Mobile Number */}
               <View style={styles.MobileNumber}>
-                {/* flag View */}
-                {/* <View style={styles.FlagView}>
-                  <View style={styles.FlagStyle}>
-                    <View style={styles.FlagRound} />
-                  </View>
-                </View> */}
-
-                {/* flag View */}
-                {/* <View style={styles.VerticalBorderStyle} /> */}
-
-                {/* Mobile Code View */}
-                {/* <View style={styles.CodeView}>
-                  <Text style={styles.CodeTextStyle}>+880</Text>
-                </View> */}
-                {/* Mobile Code View */}
-                {/* TextInput */}
+                {/* TextInput Component goes here*/}
                 <View style={styles.PhoneTextInputView}>
                   <TextInput
                     // ref={input => {
@@ -128,11 +113,7 @@ const SignUpScreen = ({navigation}: Props) => {
                     returnKeyType="next"
                   />
                 </View>
-                {/* TextInput */}
               </View>
-
-              {/* Name Validation Error */}
-              {/* Mobile Number */}
             </View>
 
             {/* Login Button View */}
@@ -204,42 +185,10 @@ const styles = StyleSheet.create({
     paddingVertical: heightToDp(2),
     fontWeight: 'bold',
   },
-  FlagView: {
-    width: '15%',
-    alignItems: 'center',
-  },
-  CodeView: {
-    width: '15%',
-    alignItems: 'center',
-  },
-  CodeTextStyle: {
-    color: ColorValue.Mobile_TextInput_Text,
-    fontSize: ConstValue.regularFontSize,
-    fontWeight: '700',
-    letterSpacing: 0.5,
-  },
   PhoneTextInputView: {
     width: '65%',
   },
-  FlagStyle: {
-    width: ResponsiveFontSize(30),
-    height: ResponsiveFontSize(18),
-    backgroundColor: '#006a4e',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  FlagRound: {
-    width: ResponsiveFontSize(12),
-    height: ResponsiveFontSize(12),
-    backgroundColor: '#f42a41',
-    borderRadius: ResponsiveFontSize(100),
-  },
-  VerticalBorderStyle: {
-    height: '80%',
-    borderWidth: 1,
-    borderColor: ColorValue.Mobile_TextInput_Border,
-    marginHorizontal: ResponsiveFontSize(8),
-  },
+
   MobileTextInputStyle: {
     borderBottomColor: 'transparent',
     paddingVertical: 0,
@@ -277,32 +226,19 @@ const styles = StyleSheet.create({
     width: '85%',
     marginLeft: widthToDp(1),
   },
-  passwordEyeIcon: {
-    width: '12%',
-    alignItems: 'center',
-  },
+
   LoginButtonView: {
     width: '100%',
     alignItems: 'center',
     paddingVertical: heightToDp(3),
   },
-  LoginButton: {
-    width: '100%',
-    borderWidth: 1,
-    alignItems: 'center',
-    backgroundColor: ColorValue.Login_Button_Color,
-    paddingVertical: heightToDp(1.5),
-    borderColor: ColorValue.StatusBar_Background,
-    borderRadius: ResponsiveFontSize(8),
-  },
+
   LoginButtonText: {
     color: ColorValue.StatusBar_Background,
     fontSize: ResponsiveFontSize(16),
     fontWeight: '600',
   },
-  ForgetPasswordView: {
-    paddingTop: heightToDp(2),
-  },
+
   ForgetPasswordText: {
     fontSize: ConstValue.regularFontSize,
     color: ColorValue.Login_Header_Title,
@@ -311,10 +247,7 @@ const styles = StyleSheet.create({
     width: '90%',
     alignItems: 'center',
   },
-  MobileTextInputStyleError: {
-    borderWidth: 1,
-    borderColor: ColorValue.TextInput_Error_Border,
-  },
+
   DeActiveLoginButton: {
     width: '100%',
     borderWidth: 1,
@@ -331,34 +264,5 @@ const styles = StyleSheet.create({
     fontSize: ConstValue.regularFontSize,
     color: ColorValue.Login_Header_Title,
     fontWeight: '700',
-  },
-  UserTypeView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  UserTypeText: {
-    fontSize: ConstValue.regularFontSize,
-    fontWeight: '600',
-    color: ColorValue.Login_Header_Title,
-  },
-  MaterialMenuIcon: {
-    padding: ResponsiveFontSize(5),
-  },
-  ErrorView: {
-    paddingTop: heightToDp(1),
-    width: '100%',
-    // flexWrap: 'wrap',
-    marginLeft: widthToDp(2),
-  },
-  ServerIssueView: {
-    paddingBottom: heightToDp(1),
-    width: '100%',
-    // flexWrap: 'wrap',
-    marginLeft: widthToDp(2),
-  },
-  ErrorText: {
-    fontSize: ConstValue.regularFontSize,
-    color: ColorValue.TextInput_Error_Border,
   },
 });
