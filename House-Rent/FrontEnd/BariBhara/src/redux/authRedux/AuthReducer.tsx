@@ -14,7 +14,12 @@ const initialState: authState = {
 
 // create auth reducer to do action
 const authReducer = (state = initialState, action: Action) => {
-  switch (action) {
+  switch (action.type) {
+    case ActionType.INCREMENT_OPERATION:
+      return {
+        ...state,
+        counter: Number(state.counter) + Number(action.payload),
+      };
     default:
       return state;
   }

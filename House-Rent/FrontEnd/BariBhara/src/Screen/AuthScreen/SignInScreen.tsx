@@ -13,7 +13,12 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthRootStack} from '../../NavigationFlow';
 import ColorValue from '../../component/Color';
-import {useSelector, shallowEqual} from 'react-redux';
+import {
+  useSelector,
+  shallowEqual,
+  useDispatch,
+  TypedUseSelectorHook,
+} from 'react-redux';
 import {
   ResponsiveFontSize,
   heightToDp,
@@ -22,17 +27,26 @@ import {
 import Header from './Header';
 import {RootState} from '../../redux/RootReducers';
 import ConstValue from '../../component/ConstValue';
+import {IncMethod} from '../../redux/authRedux/AuthActionMethod';
+import {useAppSelector} from '../../redux/RootReducers';
 
 //get props of auth root stack
 type Props = NativeStackScreenProps<AuthRootStack, 'SignUp'>;
 
 const SignInScreen = ({navigation}: Props) => {
-  //Rootstack is came from our root ruducer
-  const State = useSelector<RootState>(state => state.authReducer);
+  //Root stack is came from our root reducer
+  const authState = useAppSelector(state => state.authReducer, shallowEqual);
+
+  if (__DEV__) {
+    console.log(authState.counter, 'from sign in screen');
+  }
 
   /**  Method to navigate signUP screen */
   const NavigateMethod = () => navigation.navigate('SignUp');
-
+  // inc method
+  const IncMethodPage = () => {
+    IncMethod();
+  };
   return (
     <SafeAreaView style={styles.SafeAreaViewStyle}>
       <StatusBar backgroundColor={ColorValue.StatusBar_Background} />
@@ -40,7 +54,10 @@ const SignInScreen = ({navigation}: Props) => {
       <View style={styles.HeaderView}>
         <Header navigation={navigation} title="SignIn" Value={0} />
       </View>
-      {/* Header Area */}
+      {/* Test counter method is added */}
+      <TouchableOpacity onPress={IncMethodPage}>
+        <Text>add</Text>
+      </TouchableOpacity>
       <ScrollView
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
