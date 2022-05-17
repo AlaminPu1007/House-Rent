@@ -7,7 +7,7 @@ import {
   StatusBar,
   TextInput,
 } from 'react-native';
-import React, {FC} from 'react';
+import React, {useState} from 'react';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -23,6 +23,7 @@ import Header from './Header';
 import ConstValue from '../../component/ConstValue';
 import {IncMethod, DecMethod} from '../../redux/authRedux/AuthActionMethod';
 import {useAppSelector} from '../../redux/RootReducers';
+import {VALID_EMAIL} from '../../component/RegexValue';
 
 //get props of auth root stack
 type Props = NativeStackScreenProps<AuthRootStack, 'SignUp'>;
@@ -33,16 +34,30 @@ const SignInScreen = ({navigation}: Props) => {
     state => state.authReducer,
     shallowEqual,
   );
+  // define use state here
+  //for email text input
+  const [emailTextInput, setEmailTextInput] = useState<string>('');
+  // for password
+  const [passwordTextInput, setPasswordTextInput] = useState<string>('');
 
   /**  Method to navigate signUP screen */
   const NavigateMethod = () => navigation.navigate('SignUp');
-  // inc method
-  const IncMethodPage = () => {
-    IncMethod();
+  // store email text input
+  const EmailTextInputMethod = (text: string) => {
+    setEmailTextInput(text);
   };
-  const decMethodPage = () => {
-    DecMethod();
+  // store password text input
+  const PasswordTextInputMethod = (text: string) => {
+    setPasswordTextInput(text);
   };
+  //submit user sign in info into backend
+  const LoginMethod = () => {
+    const check_mail = VALID_EMAIL.test(emailTextInput);
+    if (__DEV__) {
+      console.log(check_mail, emailTextInput, 'from sign in method');
+    }
+  };
+
   return (
     <SafeAreaView style={styles.SafeAreaViewStyle}>
       <StatusBar backgroundColor={ColorValue.StatusBar_Background} />
@@ -68,13 +83,10 @@ const SignInScreen = ({navigation}: Props) => {
                     style={styles.MobileTextInputStyle}
                     placeholder="Enter your email"
                     underlineColorAndroid="transparent"
-                    // onSubmitEditing={() => {
-                    //   firstTextInput.focus();
-                    // }}
-                    // value={Mobile}
-                    maxLength={11}
+                    value={emailTextInput}
+                    maxLength={30}
                     keyboardType="number-pad"
-                    // onChangeText={OnChangeMobile}
+                    onChangeText={EmailTextInputMethod}
                     autoCorrect={false}
                     autoFocus={false}
                     blurOnSubmit={false}
@@ -89,14 +101,11 @@ const SignInScreen = ({navigation}: Props) => {
               <View style={styles.PasswordView}>
                 <TextInput
                   placeholder="*******"
-                  // ref={input => {
-                  //   firstTextInput = input;
-                  // }}
                   underlineColorAndroid="transparent"
                   style={styles.PasswordTextInputStyle}
-                  // secureTextEntry={passwordVisible}
-                  // value={password}
-                  // onChangeText={OnChangePassword}
+                  secureTextEntry={true}
+                  value={passwordTextInput}
+                  onChangeText={PasswordTextInputMethod}
                   autoCorrect={false}
                   blurOnSubmit={false}
                   returnKeyType="done"
@@ -120,7 +129,7 @@ const SignInScreen = ({navigation}: Props) => {
             <View style={styles.LoginButtonView}>
               <TouchableOpacity
                 style={styles.LoginButton}
-                // onPress={LoginUserFunction}
+                onPress={LoginMethod}
                 activeOpacity={0.5}>
                 <Text style={styles.LoginButtonText}>Login</Text>
               </TouchableOpacity>
@@ -139,8 +148,6 @@ const SignInScreen = ({navigation}: Props) => {
               <Text style={styles.LinkTextStyle}> SignUp</Text>
             </TouchableOpacity>
           </View>
-          {/* Navigation to Register Page */}
-          {/* Login View */}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -185,7 +192,7 @@ const styles = StyleSheet.create({
   },
 
   PhoneTextInputView: {
-    width: '65%',
+    width: '100%',
   },
   MobileTextInputStyle: {
     borderBottomColor: 'transparent',

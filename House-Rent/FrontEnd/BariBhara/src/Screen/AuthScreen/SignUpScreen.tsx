@@ -105,7 +105,7 @@ const SignUpScreen = ({navigation}: Props) => {
                     // }}
                     // value={Mobile}
 
-                    maxLength={11}
+                    maxLength={30}
                     keyboardType="number-pad"
                     // onChangeText={OnChangeMobile}
                     autoCorrect={false}
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   PhoneTextInputView: {
-    width: '65%',
+    width: '100%',
   },
 
   MobileTextInputStyle: {
