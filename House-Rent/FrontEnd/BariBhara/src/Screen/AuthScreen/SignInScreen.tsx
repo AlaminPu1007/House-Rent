@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StatusBar,
   TextInput,
+  Alert,
 } from 'react-native';
 import React, {useState} from 'react';
 
@@ -21,7 +22,7 @@ import {
 } from '../../component/Responsive';
 import Header from './Header';
 import ConstValue from '../../component/ConstValue';
-import {IncMethod, DecMethod} from '../../redux/authRedux/AuthActionMethod';
+import {SignInProcess} from '../../redux/authRedux/AuthActionMethod';
 import {useAppSelector} from '../../redux/RootReducers';
 import {VALID_EMAIL} from '../../component/RegexValue';
 
@@ -53,8 +54,10 @@ const SignInScreen = ({navigation}: Props) => {
   //submit user sign in info into backend
   const LoginMethod = () => {
     const check_mail = VALID_EMAIL.test(emailTextInput);
-    if (__DEV__) {
-      console.log(check_mail, emailTextInput, 'from sign in method');
+    if (check_mail) {
+      //api called method goes here
+    } else {
+      Alert.alert('please provide a valid email');
     }
   };
 

@@ -1,3 +1,8 @@
+/**
+ * create of instance of axios,
+ * we can call our route at any where with token
+ */
+
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -11,7 +16,6 @@ instance.interceptors.request.use(
     if (token) {
       config.headers.Authorization = {Bearer: token};
     }
-    console.log(config.headers);
     return config;
   },
 

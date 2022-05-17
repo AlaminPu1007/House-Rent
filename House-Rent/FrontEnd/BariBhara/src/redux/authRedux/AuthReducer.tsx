@@ -5,6 +5,7 @@ import {Action, ActionType} from './AuthActionCreator';
 export interface authState {
   counter: Number;
   post: [];
+  signIn_loader: boolean;
 }
 
 //our initial state define here
@@ -12,15 +13,16 @@ export interface authState {
 const initialState: authState = {
   counter: 0,
   post: [],
+  signIn_loader: true,
 };
 
 // create auth reducer to do action
 const authReducer = (state = initialState, action: Action) => {
   switch (action.type) {
-    case ActionType.INCREMENT_OPERATION:
+    case ActionType.SIGN_IN_LOADING:
       return {
         ...state,
-        counter: Number(state.counter) + Number(action.payload),
+        signIn_loader: action.payload,
       };
     case ActionType.DECREMENT_OPERATION:
       return {
