@@ -6,6 +6,7 @@ import {ActionType} from './AuthActionCreator';
 import store from '../store';
 //distract dispatch from store
 const {dispatch} = store;
+import api from '../../Api/api';
 
 //all sign in props defined here
 type signInProps = {
@@ -22,6 +23,11 @@ export const SignInProcess = async ({email, password}: signInProps) => {
   try {
     // start loading screen here
     dispatch({type: ActionType.SIGN_IN_LOADING, payload: true});
+    //call our sign in route
+    const response = await api.post('/auth/login', {email, password});
+    if (__DEV__) {
+      console.log(response.data, 'from sign in process');
+    }
 
     // end loading screen here
     dispatch({type: ActionType.SIGN_IN_LOADING, payload: false});

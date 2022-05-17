@@ -12,7 +12,7 @@ router.get("/isMe", auth, async (req, res) => {
   //'req.user._id'-come from json web token
   const user = await Register.findById(req.user._id).select("-password -__v"); //show without (password, __v) property
   //send to the client
-   res.status(200).send(user);
+  res.status(200).send(user);
 });
 
 /* Register a user */

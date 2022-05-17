@@ -56,6 +56,7 @@ const SignInScreen = ({navigation}: Props) => {
     const check_mail = VALID_EMAIL.test(emailTextInput);
     if (check_mail) {
       //api called method goes here
+      SignInProcess({email: emailTextInput, password: passwordTextInput});
     } else {
       Alert.alert('please provide a valid email');
     }
