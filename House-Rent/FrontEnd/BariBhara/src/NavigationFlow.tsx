@@ -5,7 +5,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignInScreen from './Screen/AuthScreen/SignInScreen';
 import SignUpScreen from './Screen/AuthScreen/SignUpScreen';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+///redux stuff
+import {useAppSelector} from './redux/RootReducers';
+import {shallowEqual} from 'react-redux';
+//dashboard screen import here
+import HomeScreen from './Screen/dashboard/HomeScreen';
 
+// type for auth stack
 export type AuthRootStack = {
   SignIn: undefined;
   SignUp: undefined;
@@ -13,7 +19,8 @@ export type AuthRootStack = {
 
 const AuthStack = createNativeStackNavigator<AuthRootStack>();
 
-const StackAuthNavigation: FC = () => {
+// Authentication stack navigation define here
+const StackAuthNavigation = () => {
   return (
     <AuthStack.Navigator screenOptions={{headerShown: false}}>
       <AuthStack.Screen name="SignIn" component={SignInScreen} />
@@ -21,12 +28,38 @@ const StackAuthNavigation: FC = () => {
     </AuthStack.Navigator>
   );
 };
+//type for dashboard home stack
+export type HomeRootStack = {
+  Home: undefined;
+};
+
+const HomeStack = createNativeStackNavigator<HomeRootStack>();
+
+//dashboard navigation flow
+const HomeStackNavigation = () => {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="Home" component={HomeScreen} />
+    </HomeStack.Navigator>
+  );
+};
+
+/**
+ * After login, flow define here
+ *if user logged in successfully, they can
+ *successfully access this navigation
+ */
 
 export default () => {
+  // bring auth state here
+  const {token} = useAppSelector(state => state.authReducer);
+  if (__DEV__) {
+    console.log(token, 'navigation flow');
+  }
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <StackAuthNavigation />
+        {!token ? <StackAuthNavigation /> : <HomeStackNavigation />}
       </NavigationContainer>
     </SafeAreaProvider>
   );

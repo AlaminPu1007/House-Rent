@@ -6,7 +6,7 @@ export interface authState {
   counter: Number;
   signIn_loader: boolean;
   authError: String;
-  token: String;
+  token: null;
 }
 
 //our initial state define here
@@ -15,7 +15,7 @@ const initialState: authState = {
   counter: 0,
   signIn_loader: true,
   authError: '',
-  token: '',
+  token: null,
 };
 
 // create auth reducer to do action

@@ -31,10 +31,7 @@ type Props = NativeStackScreenProps<AuthRootStack, 'SignUp'>;
 
 const SignInScreen = ({navigation}: Props) => {
   //Root stack is came from our root reducer
-  const {counter, post} = useAppSelector(
-    state => state.authReducer,
-    shallowEqual,
-  );
+  const {authError} = useAppSelector(state => state.authReducer, shallowEqual);
   // define use state here
   //for email text input
   const [emailTextInput, setEmailTextInput] = useState<string>('');
