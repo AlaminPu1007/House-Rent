@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // bring auth screen
@@ -10,6 +10,7 @@ import {useAppSelector} from './redux/RootReducers';
 import {shallowEqual} from 'react-redux';
 //dashboard screen import here
 import HomeScreen from './Screen/dashboard/HomeScreen';
+import {AutomaticSignIn} from './redux/authRedux/AuthActionMethod';
 
 // type for auth stack
 export type AuthRootStack = {
@@ -52,7 +53,12 @@ const HomeStackNavigation = () => {
 
 export default () => {
   // bring auth state here
-  const {token} = useAppSelector(state => state.authReducer);
+  const {token} = useAppSelector(state => state.authReducer, shallowEqual);
+  useEffect(() => {
+    //automatic sign in called to check user is already
+    //logged in or not
+    AutomaticSignIn();
+  }, []);
 
   return (
     <SafeAreaProvider>
