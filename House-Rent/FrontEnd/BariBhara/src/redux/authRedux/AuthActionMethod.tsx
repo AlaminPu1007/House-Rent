@@ -19,6 +19,12 @@ type signInProps = {
 export const SignInProcess = async ({email, password}: signInProps) => {
   //its run only in development mood
   try {
+    //need to be clear our error
+    dispatch({
+      type: ActionType.AUTH_ERROR_MESSAGE,
+      payload: ' ',
+    });
+
     // start loading screen here
     dispatch({type: ActionType.SIGN_IN_LOADING, payload: true});
     //call our sign in route
@@ -33,7 +39,7 @@ export const SignInProcess = async ({email, password}: signInProps) => {
       });
     } else {
       //store token inside store with local storage
-      // await AsyncStorage.setItem('token', response.data);
+      await AsyncStorage.setItem('token', response.data);
       // set token in side our redux also
       dispatch({type: ActionType.AUTH_TOKEN, payload: response.data});
     }
@@ -42,6 +48,13 @@ export const SignInProcess = async ({email, password}: signInProps) => {
   } catch (signInPropsError: any) {
     // end loading screen here
     dispatch({type: ActionType.SIGN_IN_LOADING, payload: false});
+
+    //need to be clear our error
+    dispatch({
+      type: ActionType.AUTH_ERROR_MESSAGE,
+      payload: ' ',
+    });
+
     if (__DEV__) {
       console.log(signInPropsError.message, 'from auth action sign in process');
     }

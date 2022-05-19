@@ -58,6 +58,7 @@ const SignInScreen = ({navigation}: Props) => {
   //submit user sign in info into backend
   const LoginMethod = () => {
     const check_mail = VALID_EMAIL.test(emailTextInput);
+
     if (check_mail && passwordTextInput) {
       //api called method goes here
       SignInProcess({email: emailTextInput, password: passwordTextInput});
