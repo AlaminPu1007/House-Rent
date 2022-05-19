@@ -10,7 +10,7 @@ import {
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthRootStack} from '../../NavigationFlow';
-import ColorValue from '../../component/Color';
+import Color from '../../component/Color';
 import {
   ResponsiveFontSize,
   widthToDp,
@@ -19,6 +19,9 @@ import {
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Header from './Header';
 import ConstValue from '../../component/ConstValue';
+
+// define globally of color
+const ColorValue = Color();
 
 //get props of auth root stack
 type Props = NativeStackScreenProps<AuthRootStack, 'SignIn'>;
@@ -119,7 +122,6 @@ const SignUpScreen = ({navigation}: Props) => {
             {/* Login Button View */}
             <View style={styles.LoginButtonView}>
               <TouchableOpacity
-                disabled={true}
                 style={styles.DeActiveLoginButton}
                 activeOpacity={0.5}>
                 <Text style={styles.LoginButtonText}>Sign Up</Text>
@@ -252,7 +254,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderWidth: 1,
     alignItems: 'center',
-    backgroundColor: ColorValue.DeActive_Login_Button_Color,
+    backgroundColor: ColorValue.Login_Button_Color,
     paddingVertical: heightToDp(1.5),
     borderColor: ColorValue.StatusBar_Background,
     borderRadius: ResponsiveFontSize(8),
