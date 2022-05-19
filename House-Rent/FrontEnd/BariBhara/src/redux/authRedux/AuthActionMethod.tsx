@@ -7,6 +7,7 @@ import store from '../store';
 //distract dispatch from store
 const {dispatch} = store;
 import api from '../../Api/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //all sign in props defined here
 type signInProps = {
@@ -30,6 +31,11 @@ export const SignInProcess = async ({email, password}: signInProps) => {
         type: ActionType.AUTH_ERROR_MESSAGE,
         payload: response.data?.message,
       });
+    } else {
+      //store token inside store with local storage
+      await AsyncStorage.setItem('token', response.data);
+      // set token in side our redux also
+      dispatch({type: ActionType.AUTH_TOKEN, payload: response.data});
     }
     // end loading screen here
     dispatch({type: ActionType.SIGN_IN_LOADING, payload: false});

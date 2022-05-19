@@ -4,18 +4,18 @@ import {Action, ActionType} from './AuthActionCreator';
 //define state variable with their type
 export interface authState {
   counter: Number;
-  post: [];
   signIn_loader: boolean;
   authError: String;
+  token: String;
 }
 
 //our initial state define here
 //this the initial value of our state
 const initialState: authState = {
   counter: 0,
-  post: [],
   signIn_loader: true,
   authError: '',
+  token: '',
 };
 
 // create auth reducer to do action
@@ -31,10 +31,10 @@ const authReducer = (state = initialState, action: Action) => {
         ...state,
         authError: action.payload,
       };
-    case ActionType.PUSH_TEST_OBJECT:
+    case ActionType.AUTH_TOKEN:
       return {
         ...state,
-        post: [{name: action.payload.name, value: action.payload.value}],
+        token: action.payload,
       };
     default:
       return state;
