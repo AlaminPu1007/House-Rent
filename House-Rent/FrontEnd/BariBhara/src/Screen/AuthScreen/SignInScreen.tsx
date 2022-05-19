@@ -13,7 +13,7 @@ import React, {useState} from 'react';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {AuthRootStack} from '../../NavigationFlow';
+import {RootStackParamList} from '../../NavigationFlow';
 import Color from '../../component/Color';
 import {shallowEqual} from 'react-redux';
 import {
@@ -31,7 +31,7 @@ import {VALID_EMAIL} from '../../component/RegexValue';
 const ColorValue = Color();
 
 //get props of auth root stack
-type Props = NativeStackScreenProps<AuthRootStack, 'SignUp'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
 
 const SignInScreen = ({navigation}: Props) => {
   //Root stack is came from our root reducer

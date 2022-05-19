@@ -18,7 +18,7 @@ export const AutomaticSignIn = async () => {
     if (token) {
       dispatch({type: ActionType.AUTH_TOKEN, payload: token});
     } else {
-      dispatch({type: ActionType.AUTH_TOKEN, payload: ' '});
+      dispatch({type: ActionType.AUTH_TOKEN, payload: ''});
     }
   } catch (AutomaticSignInError: any) {
     if (__DEV__) {
@@ -86,7 +86,16 @@ export const SignInProcess = async ({email, password}: signInProps) => {
   });
 };
 
-//Decrement method goes here
-export const DecMethod = () => {
-  dispatch({type: ActionType.DECREMENT_OPERATION, payload: 1});
+//Log out method goes here
+export const LogOut = async () => {
+  try {
+    //remove token from local storage
+    await AsyncStorage.removeItem('token');
+    // set token in side our redux also
+    dispatch({type: ActionType.AUTH_TOKEN, payload: ''});
+  } catch (LogOutError: any) {
+    if (__DEV__) {
+      console.log(LogOutError.message, 'from auth action method');
+    }
+  }
 };

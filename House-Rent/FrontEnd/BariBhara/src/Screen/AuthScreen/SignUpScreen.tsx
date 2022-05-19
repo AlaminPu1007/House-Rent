@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {AuthRootStack} from '../../NavigationFlow';
+import {RootStackParamList} from '../../NavigationFlow';
 import Color from '../../component/Color';
 import {
   ResponsiveFontSize,
@@ -24,7 +24,7 @@ import ConstValue from '../../component/ConstValue';
 const ColorValue = Color();
 
 //get props of auth root stack
-type Props = NativeStackScreenProps<AuthRootStack, 'SignIn'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
 
 const SignUpScreen = ({navigation}: Props) => {
   //navigate back to sign in screen

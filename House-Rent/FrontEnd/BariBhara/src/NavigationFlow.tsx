@@ -1,5 +1,8 @@
 import React, {FC, useEffect} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  createNavigationContainerRef,
+} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // bring auth screen
 import SignInScreen from './Screen/AuthScreen/SignInScreen';
@@ -13,12 +16,13 @@ import HomeScreen from './Screen/dashboard/HomeScreen';
 import {AutomaticSignIn} from './redux/authRedux/AuthActionMethod';
 
 // type for auth stack
-export type AuthRootStack = {
+export type RootStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
+  Home: undefined;
 };
 
-const AuthStack = createNativeStackNavigator<AuthRootStack>();
+const AuthStack = createNativeStackNavigator<RootStackParamList>();
 
 // Authentication stack navigation define here
 const StackAuthNavigation = () => {
@@ -30,11 +34,11 @@ const StackAuthNavigation = () => {
   );
 };
 //type for dashboard home stack
-export type HomeRootStack = {
-  Home: undefined;
-};
+// export type HomeRootStack = {
+//   Home: undefined;
+// };
 
-const HomeStack = createNativeStackNavigator<HomeRootStack>();
+const HomeStack = createNativeStackNavigator<RootStackParamList>();
 
 //dashboard navigation flow
 const HomeStackNavigation = () => {
@@ -51,6 +55,8 @@ const HomeStackNavigation = () => {
  *successfully access this navigation
  */
 
+// const navigationRef = createNavigationContainerRef<RootStackParamList>();
+
 export default () => {
   // bring auth state here
   const {token} = useAppSelector(state => state.authReducer, shallowEqual);
@@ -59,7 +65,6 @@ export default () => {
     //logged in or not
     AutomaticSignIn();
   }, []);
-
   return (
     <SafeAreaProvider>
       <NavigationContainer>
