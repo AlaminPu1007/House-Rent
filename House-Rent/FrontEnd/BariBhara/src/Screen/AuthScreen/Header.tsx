@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import ColorValue from '../../component/Color';
+import Color from '../../component/Color';
 import ConstValue from '../../component/ConstValue';
 //import Responsive height, width & fontsize
 import {
@@ -8,6 +8,9 @@ import {
   ResponsiveFontSize,
   heightToDp,
 } from '../../component/Responsive';
+
+//define globally of color value
+const ColorValue = Color();
 
 type Props = {
   navigation: any;

@@ -33,7 +33,7 @@ export const SignInProcess = async ({email, password}: signInProps) => {
       });
     } else {
       //store token inside store with local storage
-      await AsyncStorage.setItem('token', response.data);
+      // await AsyncStorage.setItem('token', response.data);
       // set token in side our redux also
       dispatch({type: ActionType.AUTH_TOKEN, payload: response.data});
     }
@@ -56,32 +56,3 @@ export const SignInProcess = async ({email, password}: signInProps) => {
 export const DecMethod = () => {
   dispatch({type: ActionType.DECREMENT_OPERATION, payload: 1});
 };
-/**
- * /**
- * Auth Related action define here
- 
-
-import {ActionType} from './AuthActionCreator';
-import store from '../store';
-//distract dispatch from store
-const {dispatch} = store;
-
-type signInProps = {
-  email: string;
-  password: string;
-};
-
-//Increment goes here
-export const SignInProcess = ({email, password}: signInProps) => {
-  dispatch({
-    type: ActionType.PUSH_TEST_OBJECT,
-    payload: {email, password},
-  });
-};
-
-//Decrement method goes here
-export const DecMethod = () => {
-  dispatch({type: ActionType.DECREMENT_OPERATION, payload: 1});
-};
-
- */

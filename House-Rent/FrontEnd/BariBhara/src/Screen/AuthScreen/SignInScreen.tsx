@@ -7,13 +7,14 @@ import {
   StatusBar,
   TextInput,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import React, {useState} from 'react';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthRootStack} from '../../NavigationFlow';
-import ColorValue from '../../component/Color';
+import Color from '../../component/Color';
 import {shallowEqual} from 'react-redux';
 import {
   ResponsiveFontSize,
@@ -26,12 +27,18 @@ import {SignInProcess} from '../../redux/authRedux/AuthActionMethod';
 import {useAppSelector} from '../../redux/RootReducers';
 import {VALID_EMAIL} from '../../component/RegexValue';
 
+// define globally of color
+const ColorValue = Color();
+
 //get props of auth root stack
 type Props = NativeStackScreenProps<AuthRootStack, 'SignUp'>;
 
 const SignInScreen = ({navigation}: Props) => {
   //Root stack is came from our root reducer
-  const {authError} = useAppSelector(state => state.authReducer, shallowEqual);
+  const {signIn_loader, authError} = useAppSelector(
+    state => state.authReducer,
+    shallowEqual,
+  );
   // define use state here
   //for email text input
   const [emailTextInput, setEmailTextInput] = useState<string>('');
@@ -51,11 +58,11 @@ const SignInScreen = ({navigation}: Props) => {
   //submit user sign in info into backend
   const LoginMethod = () => {
     const check_mail = VALID_EMAIL.test(emailTextInput);
-    if (check_mail) {
+    if (check_mail && passwordTextInput) {
       //api called method goes here
       SignInProcess({email: emailTextInput, password: passwordTextInput});
     } else {
-      Alert.alert('please provide a valid email');
+      Alert.alert('please provide a valid email and password');
     }
   };
 
@@ -115,6 +122,13 @@ const SignInScreen = ({navigation}: Props) => {
             </View>
             {/* password TextInput Box */}
 
+            {/* Error component goes here */}
+            {authError ? (
+              <View style={styles.errorView}>
+                <Text style={styles.errorTextStyle}>{authError}</Text>
+              </View>
+            ) : null}
+
             {/* Forget Password */}
             <View style={styles.ForgetPasswordView}>
               <TouchableOpacity activeOpacity={0.5}>
@@ -132,7 +146,11 @@ const SignInScreen = ({navigation}: Props) => {
                 style={styles.LoginButton}
                 onPress={LoginMethod}
                 activeOpacity={0.5}>
-                <Text style={styles.LoginButtonText}>Login</Text>
+                {signIn_loader ? (
+                  <ActivityIndicator size={'small'} color={ColorValue.WHITE} />
+                ) : (
+                  <Text style={styles.LoginButtonText}>Login</Text>
+                )}
               </TouchableOpacity>
             </View>
           </View>
@@ -223,6 +241,14 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     width: '85%',
     marginLeft: widthToDp(1),
+  },
+
+  errorView: {
+    paddingTop: heightToDp(1),
+  },
+  errorTextStyle: {
+    fontSize: ConstValue.regularFontSize,
+    color: ColorValue.RED,
   },
 
   LoginButtonView: {

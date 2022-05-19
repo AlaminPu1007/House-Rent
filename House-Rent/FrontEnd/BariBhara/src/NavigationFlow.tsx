@@ -45,7 +45,7 @@ const HomeStackNavigation = () => {
 };
 
 /**
- * After login, flow define here
+ *After login, flow define here
  *if user logged in successfully, they can
  *successfully access this navigation
  */
@@ -53,9 +53,7 @@ const HomeStackNavigation = () => {
 export default () => {
   // bring auth state here
   const {token} = useAppSelector(state => state.authReducer);
-  if (__DEV__) {
-    console.log(token, 'navigation flow');
-  }
+
   return (
     <SafeAreaProvider>
       <NavigationContainer>

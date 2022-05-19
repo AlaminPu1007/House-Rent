@@ -13,7 +13,7 @@ export interface authState {
 //this the initial value of our state
 const initialState: authState = {
   counter: 0,
-  signIn_loader: true,
+  signIn_loader: false,
   authError: '',
   token: null,
 };
