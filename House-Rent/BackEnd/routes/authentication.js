@@ -73,7 +73,8 @@ router.post("/login", async (req, res) => {
   // compare hashing password to login user given password
   // re hash it and compared, when register user used
   const validPassword = await bcrypt.compare(req.body.password, user.password);
-  if (!validPassword) return res.status(400).send("Invalid email or password");
+  if (!validPassword)
+    return res.json({ status: 400, message: "Invalid email or password" });
 
   try {
     // making a jsonwebtoken
