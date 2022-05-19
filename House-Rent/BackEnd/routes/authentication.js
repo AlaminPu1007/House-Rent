@@ -61,11 +61,14 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   //check Joi validation
   const { error } = validateLogin(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+
+  if (error)
+    return res.json({ status: 400, message: error.details[0].message });
 
   //check user is valid or not
   let user = await Register.findOne({ email: req.body.email });
-  if (!user) return res.status(400).send("Invalid email or password");
+  if (!user)
+    return res.json({ status: 400, message: "Invalid email or password" });
 
   // compare hashing password to login user given password
   // re hash it and compared, when register user used

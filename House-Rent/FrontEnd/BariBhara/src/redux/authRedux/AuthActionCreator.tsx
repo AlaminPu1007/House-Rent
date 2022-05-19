@@ -5,6 +5,8 @@ export enum ActionType {
   PUSH_TEST_OBJECT = 'PUSH_TEST_OBJECT',
   //for sign in loading screen
   SIGN_IN_LOADING = 'SIGN_IN_LOADING',
+  //auth error
+  AUTH_ERROR_MESSAGE = 'AUTH_ERROR_MESSAGE',
 }
 // for Increment operation
 interface actionSignIN {
@@ -35,9 +37,16 @@ interface signInLoading {
   payload: boolean;
 }
 
+//interface for auth error message
+interface authErrorMessage {
+  type: ActionType.AUTH_ERROR_MESSAGE;
+  payload: String;
+}
+
 // action will be passed through action: Action method
 export type Action =
   | actionSignIN
   | actionDecrement
   | testObjects
+  | authErrorMessage
   | signInLoading;

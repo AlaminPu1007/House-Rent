@@ -17,18 +17,20 @@ type signInProps = {
 //Increment goes here
 export const SignInProcess = async ({email, password}: signInProps) => {
   //its run only in development mood
-  if (__DEV__) {
-    console.log(email, password, 'from sign in process');
-  }
   try {
     // start loading screen here
     dispatch({type: ActionType.SIGN_IN_LOADING, payload: true});
     //call our sign in route
     const response = await api.post('/auth/login', {email, password});
-    if (__DEV__) {
-      console.log(response.data, 'from sign in process');
-    }
 
+    // validation error
+    if (response.data?.status) {
+      //dispatch error to store it inside redux
+      dispatch({
+        type: ActionType.AUTH_ERROR_MESSAGE,
+        payload: response.data?.message,
+      });
+    }
     // end loading screen here
     dispatch({type: ActionType.SIGN_IN_LOADING, payload: false});
   } catch (signInPropsError: any) {
