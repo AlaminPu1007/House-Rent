@@ -9,6 +9,27 @@ const {dispatch} = store;
 import api from '../../Api/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// Automatic sign in process
+export const AutomaticSignIn = async () => {
+  try {
+    // get token form local storage
+    const token = await AsyncStorage.getItem('token');
+    //if token is present then set it
+    if (token) {
+      dispatch({type: ActionType.AUTH_TOKEN, payload: token});
+    } else {
+      dispatch({type: ActionType.AUTH_TOKEN, payload: ' '});
+    }
+  } catch (AutomaticSignInError: any) {
+    if (__DEV__) {
+      console.log(
+        AutomaticSignInError.message,
+        'AutomaticSignInError from auth redux',
+      );
+    }
+  }
+};
+
 //all sign in props defined here
 type signInProps = {
   email: string;
