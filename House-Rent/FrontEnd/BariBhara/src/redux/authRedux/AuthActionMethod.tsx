@@ -86,6 +86,21 @@ export const SignInProcess = async ({email, password}: signInProps) => {
   });
 };
 
+/**
+ * New user create method goes here
+ */
+export const SignUpProcess = async () => {
+  try {
+  } catch (SignUpProcessError: any) {
+    if (__DEV__) {
+      console.log(
+        SignUpProcessError.message,
+        'sign up process from auth action method ',
+      );
+    }
+  }
+};
+
 //Log out method goes here
 export const LogOut = async () => {
   try {

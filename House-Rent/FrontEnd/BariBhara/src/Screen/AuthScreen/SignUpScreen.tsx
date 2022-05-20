@@ -1,4 +1,5 @@
 import {
+  Alert,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -19,6 +20,7 @@ import {
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Header from './Header';
 import ConstValue from '../../component/ConstValue';
+import {VALID_EMAIL} from '../../component/RegexValue';
 
 // define globally of color
 const ColorValue = Color();
@@ -45,6 +47,22 @@ const SignUpScreen = ({navigation}: Props) => {
   // password text input store here
   const passwordTextInputMethod = (text: string) => {
     setPassword(text);
+  };
+
+  //sign up method goes here
+  const signUpMethod = () => {
+    const check_mail = VALID_EMAIL.test(email);
+
+    if (check_mail) {
+      if (password && name) {
+        //api called method goes here
+        SignUpProcess({name, email, password});
+      } else {
+        Alert.alert('please provide a valid email');
+      }
+    } else {
+      Alert.alert('please provide a valid email');
+    }
   };
 
   return (
