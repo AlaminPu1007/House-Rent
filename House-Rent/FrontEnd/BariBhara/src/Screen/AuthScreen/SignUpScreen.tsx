@@ -38,6 +38,14 @@ const SignUpScreen = ({navigation}: Props) => {
   const nameTextInputMethod = (text: string) => {
     setName(text);
   };
+  // email text input store here
+  const emailTextInputMethod = (text: string) => {
+    setEmail(text);
+  };
+  // password text input store here
+  const passwordTextInputMethod = (text: string) => {
+    setPassword(text);
+  };
 
   return (
     <SafeAreaView style={styles.SafeAreaViewStyle}>
@@ -62,6 +70,8 @@ const SignUpScreen = ({navigation}: Props) => {
                   placeholder="Your name"
                   underlineColorAndroid="transparent"
                   style={styles.PasswordTextInputStyle}
+                  value={name}
+                  onChangeText={nameTextInputMethod}
                   autoCorrect={false}
                   autoFocus={true}
                   blurOnSubmit={false}
@@ -79,15 +89,13 @@ const SignUpScreen = ({navigation}: Props) => {
                 {/* TextInput Component goes here*/}
                 <View style={styles.PhoneTextInputView}>
                   <TextInput
-                    // ref={input => {
-                    //   firstTextInput = input;
-                    // }}
                     style={styles.MobileTextInputStyle}
                     placeholder="Enter your email"
                     underlineColorAndroid="transparent"
                     maxLength={30}
                     keyboardType="email-address"
-                    // onChangeText={OnChangeMobile}
+                    value={email}
+                    onChangeText={emailTextInputMethod}
                     autoCorrect={false}
                     blurOnSubmit={false}
                     returnKeyType="next"
@@ -104,9 +112,12 @@ const SignUpScreen = ({navigation}: Props) => {
                   placeholder="*******"
                   underlineColorAndroid="transparent"
                   style={styles.PasswordTextInputStyle}
+                  value={password}
+                  onChangeText={passwordTextInputMethod}
                   autoCorrect={false}
                   blurOnSubmit={false}
                   returnKeyType="done"
+                  secureTextEntry={true}
                 />
               </View>
             </View>
