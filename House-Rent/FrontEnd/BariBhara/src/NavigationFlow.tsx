@@ -45,7 +45,7 @@ const HomeStack = createNativeStackNavigator<RootStackParamList>();
 //dashboard navigation flow
 const HomeStackNavigation = () => {
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator screenOptions={{headerShown: false}}>
       <HomeStack.Screen name="Home" component={HomeScreen} />
     </HomeStack.Navigator>
   );

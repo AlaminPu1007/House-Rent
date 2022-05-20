@@ -70,10 +70,10 @@ export const SignInProcess = async ({email, password}: signInProps) => {
     // end loading screen here
     dispatch({type: ActionType.SIGN_IN_LOADING, payload: false});
 
-    //need to be clear our error
+    //need to be store error
     dispatch({
       type: ActionType.AUTH_ERROR_MESSAGE,
-      payload: ' ',
+      payload: 'Something went wrong.please try again later',
     });
 
     if (__DEV__) {
@@ -86,12 +86,59 @@ export const SignInProcess = async ({email, password}: signInProps) => {
   });
 };
 
+// interface of sign up props
+type signUpProps = {
+  name: string;
+  email: string;
+  password: string;
+};
+
 /**
  * New user create method goes here
  */
-export const SignUpProcess = async () => {
+export const SignUpProcess = async ({name, email, password}: signUpProps) => {
+  //make body
+  const body = {
+    name,
+    email,
+    password,
+  };
   try {
+    //need to be clear our error
+    dispatch({
+      type: ActionType.AUTH_ERROR_MESSAGE,
+      payload: '',
+    });
+    // start loading screen here
+    dispatch({type: ActionType.SIGN_IN_LOADING, payload: true});
+
+    const response = await api.post('/auth/register', body);
+
+    // validation error
+    if (response.data?.status) {
+      //dispatch error to store it inside redux
+      dispatch({
+        type: ActionType.AUTH_ERROR_MESSAGE,
+        payload: response.data?.message,
+      });
+    } else {
+      //store token inside store with local storage
+      await AsyncStorage.setItem('token', response.data.token);
+      // set token in side our redux also
+      dispatch({type: ActionType.AUTH_TOKEN, payload: response.data.token});
+    }
+
+    // end loading screen here
+    dispatch({type: ActionType.SIGN_IN_LOADING, payload: false});
   } catch (SignUpProcessError: any) {
+    // end loading screen here
+    dispatch({type: ActionType.SIGN_IN_LOADING, payload: false});
+    //need to be store error
+    dispatch({
+      type: ActionType.AUTH_ERROR_MESSAGE,
+      payload: 'Something went wrong.please try again later',
+    });
+
     if (__DEV__) {
       console.log(
         SignUpProcessError.message,

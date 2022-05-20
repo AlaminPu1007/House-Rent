@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   Alert,
   ScrollView,
   StatusBar,
@@ -21,6 +22,9 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Header from './Header';
 import ConstValue from '../../component/ConstValue';
 import {VALID_EMAIL} from '../../component/RegexValue';
+import {SignUpProcess} from '../../redux/authRedux/AuthActionMethod';
+import {useAppSelector} from '../../redux/RootReducers';
+import {shallowEqual} from 'react-redux';
 
 // define globally of color
 const ColorValue = Color();
@@ -29,6 +33,12 @@ const ColorValue = Color();
 type Props = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
 
 const SignUpScreen = ({navigation}: Props) => {
+  //Root stack is came from our root reducer
+  const {signIn_loader, authError} = useAppSelector(
+    state => state.authReducer,
+    shallowEqual,
+  );
+
   //define use state here
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -53,15 +63,15 @@ const SignUpScreen = ({navigation}: Props) => {
   const signUpMethod = () => {
     const check_mail = VALID_EMAIL.test(email);
 
-    if (check_mail) {
-      if (password && name) {
+    if (password && name && email) {
+      if (check_mail) {
         //api called method goes here
         SignUpProcess({name, email, password});
       } else {
         Alert.alert('please provide a valid email');
       }
     } else {
-      Alert.alert('please provide a valid email');
+      Alert.alert('field should not be empty');
     }
   };
 
@@ -140,12 +150,24 @@ const SignUpScreen = ({navigation}: Props) => {
               </View>
             </View>
 
+            {/* Error component goes here */}
+            {authError ? (
+              <View style={styles.errorView}>
+                <Text style={styles.errorTextStyle}>{authError}</Text>
+              </View>
+            ) : null}
+
             {/* Login Button View */}
             <View style={styles.LoginButtonView}>
               <TouchableOpacity
                 style={styles.DeActiveLoginButton}
+                onPress={signUpMethod}
                 activeOpacity={0.5}>
-                <Text style={styles.LoginButtonText}>Sign Up</Text>
+                {signIn_loader ? (
+                  <ActivityIndicator size={'small'} color={ColorValue.WHITE} />
+                ) : (
+                  <Text style={styles.LoginButtonText}>Sign Up</Text>
+                )}
               </TouchableOpacity>
             </View>
           </View>
@@ -287,5 +309,12 @@ const styles = StyleSheet.create({
     fontSize: ConstValue.regularFontSize,
     color: ColorValue.Login_Header_Title,
     fontWeight: '700',
+  },
+  errorView: {
+    paddingTop: heightToDp(1),
+  },
+  errorTextStyle: {
+    fontSize: ConstValue.regularFontSize,
+    color: ColorValue.RED,
   },
 });
