@@ -31,7 +31,11 @@ import {VALID_EMAIL} from '../../component/RegexValue';
 const ColorValue = Color();
 
 //get props of auth root stack
-type Props = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
+type Props = NativeStackScreenProps<
+  RootStackParamList,
+  'SignUp',
+  'forgetPassword'
+>;
 
 const SignInScreen = ({navigation}: Props) => {
   //Root stack is came from our root reducer
@@ -66,6 +70,9 @@ const SignInScreen = ({navigation}: Props) => {
       Alert.alert('please provide a valid email and password');
     }
   };
+
+  // navigate to forget password screen
+  const navigateToForget = () => navigation.navigate('forgetPassword');
 
   return (
     <SafeAreaView style={styles.SafeAreaViewStyle}>
@@ -132,7 +139,7 @@ const SignInScreen = ({navigation}: Props) => {
 
             {/* Forget Password */}
             <View style={styles.ForgetPasswordView}>
-              <TouchableOpacity activeOpacity={0.5}>
+              <TouchableOpacity activeOpacity={0.5} onPress={navigateToForget}>
                 <Text
                   style={[styles.ForgetPasswordText, styles.forgetTextBold]}>
                   Forget password ?

@@ -1,11 +1,9 @@
 import React, {FC, useEffect} from 'react';
-import {
-  NavigationContainer,
-  createNavigationContainerRef,
-} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // bring auth screen
 import SignInScreen from './Screen/AuthScreen/SignInScreen';
+import ForgetPasswordScreen from './Screen/AuthScreen/ForgetPasswordScreen';
 import SignUpScreen from './Screen/AuthScreen/SignUpScreen';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 ///redux stuff
@@ -20,6 +18,7 @@ export type RootStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
   Home: undefined;
+  forgetPassword: undefined;
 };
 
 const AuthStack = createNativeStackNavigator<RootStackParamList>();
@@ -27,11 +26,13 @@ const AuthStack = createNativeStackNavigator<RootStackParamList>();
 // Authentication stack navigation define here
 const StackAuthNavigation = () => {
   return (
-    <AuthStack.Navigator
-      initialRouteName="SignUp"
-      screenOptions={{headerShown: false}}>
+    <AuthStack.Navigator screenOptions={{headerShown: false}}>
       <AuthStack.Screen name="SignIn" component={SignInScreen} />
       <AuthStack.Screen name="SignUp" component={SignUpScreen} />
+      <AuthStack.Screen
+        name="forgetPassword"
+        component={ForgetPasswordScreen}
+      />
     </AuthStack.Navigator>
   );
 };
