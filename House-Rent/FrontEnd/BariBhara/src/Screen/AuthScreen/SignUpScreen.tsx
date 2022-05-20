@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../NavigationFlow';
 import Color from '../../component/Color';
@@ -27,8 +27,17 @@ const ColorValue = Color();
 type Props = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
 
 const SignUpScreen = ({navigation}: Props) => {
+  //define use state here
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [name, setName] = useState<string>('');
+
   //navigate back to sign in screen
   const NavigateLoginMethod = () => navigation.goBack();
+  // name text input store here
+  const nameTextInputMethod = (text: string) => {
+    setName(text);
+  };
 
   return (
     <SafeAreaView style={styles.SafeAreaViewStyle}>
@@ -53,43 +62,16 @@ const SignUpScreen = ({navigation}: Props) => {
                   placeholder="Your name"
                   underlineColorAndroid="transparent"
                   style={styles.PasswordTextInputStyle}
-                  // value={name}
-                  // onChangeText={OnChangeName}
                   autoCorrect={false}
                   autoFocus={true}
                   blurOnSubmit={false}
-                  // onSubmitEditing={() => {
-                  //   firstTextInput.focus();
-                  // }}
                   returnKeyType="next"
                 />
               </View>
 
               {/* Name Validation Error */}
             </View>
-            {/* password TextInput Box */}
-
-            {/* password TextInput Box */}
-            <View>
-              <Text style={styles.PhoneTextStyle}>Enter your password</Text>
-              <View style={styles.PasswordView}>
-                <TextInput
-                  placeholder="*******"
-                  underlineColorAndroid="transparent"
-                  style={styles.PasswordTextInputStyle}
-                  // secureTextEntry={passwordVisible}
-                  // value={password}
-                  // ref={input => {
-                  //   secondTextInput = input;
-                  // }}
-                  // onChangeText={OnChangePassword}
-                  autoCorrect={false}
-                  blurOnSubmit={false}
-                  returnKeyType="done"
-                />
-              </View>
-            </View>
-            {/* Phone Number TextInput Box */}
+            {/* email TextInput Box */}
             <View>
               <Text style={styles.PhoneTextStyle}>Enter your email</Text>
               {/* Mobile Number */}
@@ -103,19 +85,29 @@ const SignUpScreen = ({navigation}: Props) => {
                     style={styles.MobileTextInputStyle}
                     placeholder="Enter your email"
                     underlineColorAndroid="transparent"
-                    // onSubmitEditing={() => {
-                    //   secondTextInput.focus();
-                    // }}
-                    // value={Mobile}
-
                     maxLength={30}
-                    keyboardType="number-pad"
+                    keyboardType="email-address"
                     // onChangeText={OnChangeMobile}
                     autoCorrect={false}
                     blurOnSubmit={false}
                     returnKeyType="next"
                   />
                 </View>
+              </View>
+            </View>
+
+            {/* password TextInput Box */}
+            <View>
+              <Text style={styles.PhoneTextStyle}>Enter your password</Text>
+              <View style={styles.PasswordView}>
+                <TextInput
+                  placeholder="*******"
+                  underlineColorAndroid="transparent"
+                  style={styles.PasswordTextInputStyle}
+                  autoCorrect={false}
+                  blurOnSubmit={false}
+                  returnKeyType="done"
+                />
               </View>
             </View>
 

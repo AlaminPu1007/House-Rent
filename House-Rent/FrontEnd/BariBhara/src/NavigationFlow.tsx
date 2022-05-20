@@ -27,7 +27,9 @@ const AuthStack = createNativeStackNavigator<RootStackParamList>();
 // Authentication stack navigation define here
 const StackAuthNavigation = () => {
   return (
-    <AuthStack.Navigator screenOptions={{headerShown: false}}>
+    <AuthStack.Navigator
+      initialRouteName="SignUp"
+      screenOptions={{headerShown: false}}>
       <AuthStack.Screen name="SignIn" component={SignInScreen} />
       <AuthStack.Screen name="SignUp" component={SignUpScreen} />
     </AuthStack.Navigator>

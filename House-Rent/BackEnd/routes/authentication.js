@@ -18,11 +18,14 @@ router.get("/isMe", auth, async (req, res) => {
 /* Register a user */
 router.post("/register", async (req, res) => {
   const { error } = validate(req.body);
-  if (error) return res.send(error.details[0].message).status(400);
+  if (error)
+    return res.json({ status: 400, message: error.details[0].message });
 
   /* check email is already exist or not */
   let user = await Register.findOne({ email: req.body.email });
-  if (user) return res.send("This email is already exist").status(400); //400-bad request
+  //400-bad request
+  if (user)
+    return res.json({ status: 400, message: "This email is already exist" });
 
   try {
     const { name, email, password } = req.body;
@@ -50,10 +53,10 @@ router.post("/register", async (req, res) => {
       .header("Bearer", token)
       .send({ name, email, token, message }); // send user with property name, email only, using lodash
   } catch (err) {
-    res
-
-      .send("To register a user, something went wrong " + err.message)
-      .status(404);
+    res.json({
+      status: 404,
+      message: "To register a user, something went wrong " + err.message,
+    });
   }
 });
 
