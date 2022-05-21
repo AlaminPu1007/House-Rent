@@ -20,6 +20,7 @@ import {
 } from '../../component/Responsive';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../NavigationFlow';
+import {VALID_EMAIL} from '../../component/RegexValue';
 //Define All ColorValue into one variable
 const ColorValue = Color();
 
@@ -55,11 +56,15 @@ const ForgetPasswordScreen = ({navigation}: Props) => {
   //On Press Function
   //Email TextInput function
   const OnChangeMobile = (text: string) => {
-    if (text.length == 0) {
-      setMobileFill(false);
-    } else {
-      setMobileFill(true);
-    }
+    //check valid email
+     const check_mail = VALID_EMAIL.test(text);
+
+     if(check_mail && text.length > 0 )
+     {
+       setMobileFill(true);
+     }else {
+       setMobileFill(false);
+     }
     setMobile(text);
   };
 
@@ -91,26 +96,11 @@ const ForgetPasswordScreen = ({navigation}: Props) => {
                     ? [styles.MobileNumber, styles.MobileTextInputStyleError]
                     : styles.MobileNumber
                 }>
-                {/* flag View */}
-                <View style={styles.FlagView}>
-                  <View style={styles.FlagStyle}>
-                    <View style={styles.FlagRound} />
-                  </View>
-                </View>
-
-                {/* flag View */}
-                <View style={styles.VerticalBorderStyle} />
-
-                {/* Mobile Code View */}
-                <View style={styles.CodeView}>
-                  <Text style={styles.CodeTextStyle}>+880</Text>
-                </View>
-                {/* Mobile Code View */}
-                {/* TextInput */}
+                {/* Email text input component */}
                 <View style={styles.PhoneTextInputView}>
                   <TextInput
                     style={styles.MobileTextInputStyle}
-                    placeholder="1XXXXXXXXX"
+                    placeholder="Enter you email"
                     underlineColorAndroid="transparent"
                     value={Mobile}
                     onChangeText={OnChangeMobile}
@@ -203,27 +193,10 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   PhoneTextInputView: {
-    width: '65%',
+    width: '100%',
+    marginLeft: widthToDp(1),
   },
-  FlagStyle: {
-    width: ResponsiveFontSize(30),
-    height: ResponsiveFontSize(18),
-    backgroundColor: '#006a4e',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  FlagRound: {
-    width: ResponsiveFontSize(12),
-    height: ResponsiveFontSize(12),
-    backgroundColor: '#f42a41',
-    borderRadius: ResponsiveFontSize(100),
-  },
-  VerticalBorderStyle: {
-    height: '80%',
-    borderWidth: 1,
-    borderColor: ColorValue.Mobile_TextInput_Border,
-    marginHorizontal: ResponsiveFontSize(8),
-  },
+
   MobileTextInputStyle: {
     borderBottomColor: 'transparent',
     paddingVertical: 0,
