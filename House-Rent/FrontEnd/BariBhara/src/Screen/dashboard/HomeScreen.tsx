@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     alignItems: 'center',
-    paddingTop: heightToDp(8),
-    paddingBottom: heightToDp(1),
+    paddingVertical: heightToDp(1),
   },
 });

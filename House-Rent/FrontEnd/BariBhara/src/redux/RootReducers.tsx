@@ -1,12 +1,17 @@
 import {combineReducers} from 'redux';
 import {useSelector, TypedUseSelectorHook} from 'react-redux';
 import authReducer from './authRedux/AuthReducer';
+//bring dashboard reducer(which came form home component)
+import dashboardReducer from './dashboardRedux/DashboardReducer';
+
 // our all reducer goes here,
 //create Reducers will give you ability to work with one to more reducers with
 //their action
 const rootReducers = combineReducers({
   //auth reducer define here
   authReducer,
+  // dashboard reducer
+  dashboardReducer,
 });
 
 export default rootReducers;

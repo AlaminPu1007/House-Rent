@@ -18,6 +18,11 @@ const initialState: authState = {
   token: '',
 };
 
+/**
+ * our actual dashboard will be define here
+ * by this our all initial state will be add, delete, update etc happen
+ *
+ */
 // create auth reducer to do action
 const authReducer = (state = initialState, action: Action) => {
   switch (action.type) {
