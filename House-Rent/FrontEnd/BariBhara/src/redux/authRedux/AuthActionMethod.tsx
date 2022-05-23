@@ -138,7 +138,7 @@ export const SignUpProcess = async ({name, email, password}: signUpProps) => {
       type: ActionType.AUTH_ERROR_MESSAGE,
       payload: 'Something went wrong.please try again later',
     });
-
+    //this clg will be show for dev mood only
     if (__DEV__) {
       console.log(
         SignUpProcessError.message,
@@ -156,6 +156,7 @@ export const LogOut = async () => {
     // set token in side our redux also
     dispatch({type: ActionType.AUTH_TOKEN, payload: ''});
   } catch (LogOutError: any) {
+    //this clg will be show for dev mood only
     if (__DEV__) {
       console.log(LogOutError.message, 'from auth action method');
     }

@@ -1,22 +1,37 @@
 import {StyleSheet, Text, View, ScrollView, StatusBar} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 import {RootStackParamList} from '../../NavigationFlow';
 //bring fake json
-import DummyData from '../../component/Dummy';
+import DummyData from '../../component/DummyData';
 import Color from '../../component/Color';
 import Header from '../AuthScreen/Header';
 import {heightToDp} from '../../component/Responsive';
+import {StorePostData} from '../../redux/dashboardRedux/DashboardActionMethod';
+import {useAppSelector} from '../../redux/RootReducers';
 
 //define color function
 const ColorValue = Color();
+//define dummy data
+const Data = DummyData();
 
 //get screen props
 type Props = BottomTabScreenProps<RootStackParamList, 'Setting'>;
 
 const HomeScreen = ({navigation}: Props) => {
+  // bring dashboard redux initial state
+  const {post} = useAppSelector(state => state.dashboardReducer);
+
+  /**
+   * after first visit on this screen
+   * dummy json will be stored inside our redux(global state)
+   */
+  useEffect(() => {
+    StorePostData({data: Data});
+  }, []);
+
   return (
     <SafeAreaView style={styles.SafeAreaViewStyle}>
       {/* Header Area */}

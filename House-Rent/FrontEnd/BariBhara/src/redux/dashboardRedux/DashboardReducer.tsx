@@ -22,6 +22,11 @@ const initialState: dashboardState = {
  */
 const dashboardReducer = (state = initialState, action: Action) => {
   switch (action.type) {
+    case ActionType.STORE_DASHBOARD_DATA:
+      return {
+        ...state,
+        post: action.payload,
+      };
     default:
       return state;
   }
