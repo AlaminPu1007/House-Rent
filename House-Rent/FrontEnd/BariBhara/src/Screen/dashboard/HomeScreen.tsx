@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, ScrollView, StatusBar} from 'react-native';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React, {useEffect} from 'react';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -22,7 +22,7 @@ type Props = BottomTabScreenProps<RootStackParamList, 'Setting'>;
 
 const HomeScreen = ({navigation}: Props) => {
   // bring dashboard redux initial state
-  const {post} = useAppSelector(state => state.dashboardReducer);
+  const {post} = useAppSelector<any>(state => state.dashboardReducer);
 
   /**
    * after first visit on this screen
@@ -35,7 +35,7 @@ const HomeScreen = ({navigation}: Props) => {
   return (
     <SafeAreaView style={styles.SafeAreaViewStyle}>
       {/* Header Area */}
-      <View style={styles.HeaderView}>
+      <View>
         <Header navigation={navigation} title="Home" Value={0} />
       </View>
       <ScrollView
@@ -43,7 +43,16 @@ const HomeScreen = ({navigation}: Props) => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.ContentStyle}>
         <View style={styles.BodyViewStyle}>
-          <Text>Home Screen</Text>
+          {/* render our all array of data */}
+          <View>
+            {post?.map((item: any) => {
+              return (
+                <View key={item.id}>
+                  <Text>{item.description}</Text>
+                </View>
+              );
+            })}
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -56,9 +65,6 @@ const styles = StyleSheet.create({
   SafeAreaViewStyle: {
     flex: 1,
     backgroundColor: ColorValue.StatusBar_Background,
-  },
-  HeaderView: {
-    // paddingBottom: heightToDp(8),
   },
   ContentStyle: {
     flexGrow: 1,

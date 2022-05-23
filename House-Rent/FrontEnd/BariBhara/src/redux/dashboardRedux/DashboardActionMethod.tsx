@@ -17,7 +17,7 @@ const {dispatch} = store;
 type storePostDataProps = {
   data: any;
 };
-export const StorePostData = async ({data}: storePostDataProps) => {
+export const StorePostData = async ({data}: any) => {
   try {
     // later api called and data store inside redux
     // method implemented, now redux is added only
