@@ -11,7 +11,10 @@ import {useAppSelector} from './redux/RootReducers';
 import {shallowEqual} from 'react-redux';
 //dashboard screen import here
 import HomeScreen from './Screen/dashboard/HomeScreen';
+import SettingScreen from './Screen/dashboard/SettingScreen';
 import {AutomaticSignIn} from './redux/authRedux/AuthActionMethod';
+//for tab navigation
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 // type for auth stack
 export type RootStackParamList = {
@@ -19,6 +22,7 @@ export type RootStackParamList = {
   SignUp: undefined;
   Home: undefined;
   forgetPassword: undefined;
+  Setting: undefined;
 };
 
 const AuthStack = createNativeStackNavigator<RootStackParamList>();
@@ -36,19 +40,26 @@ const StackAuthNavigation = () => {
     </AuthStack.Navigator>
   );
 };
-//type for dashboard home stack
-// export type HomeRootStack = {
-//   Home: undefined;
-// };
 
-const HomeStack = createNativeStackNavigator<RootStackParamList>();
+//define tab navigation
+const Tab = createBottomTabNavigator<RootStackParamList>();
 
 //dashboard navigation flow
-const HomeStackNavigation = () => {
+const HomeTabNavigation = () => {
   return (
-    <HomeStack.Navigator screenOptions={{headerShown: false}}>
-      <HomeStack.Screen name="Home" component={HomeScreen} />
-    </HomeStack.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarIconStyle: {display: 'none'},
+
+        tabBarLabelStyle: {
+          fontWeight: '700',
+          fontSize: 15,
+        },
+      }}>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Setting" component={SettingScreen} />
+    </Tab.Navigator>
   );
 };
 
@@ -71,7 +82,7 @@ export default () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        {!token ? <StackAuthNavigation /> : <HomeStackNavigation />}
+        {token ? <StackAuthNavigation /> : <HomeTabNavigation />}
       </NavigationContainer>
     </SafeAreaProvider>
   );
