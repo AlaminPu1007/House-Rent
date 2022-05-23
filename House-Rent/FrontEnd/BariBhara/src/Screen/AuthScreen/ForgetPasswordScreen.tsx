@@ -35,6 +35,7 @@ const ForgetPasswordScreen = ({navigation}: Props) => {
 
   //useEffect function
   useEffect(() => {
+    // for avoiding memory leak
     let unmounted = false;
 
     if (!unmounted) {
