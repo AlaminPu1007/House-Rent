@@ -11,7 +11,7 @@ const DummyData = () => {
       image: FirstImage,
       like: 5,
       rating: 4.5,
-      postData: new Date().toISOString(),
+      postData: '2022-05-26T14:49:07.034Z',
       totalComments: 5,
       user: {
         name: 'alamin',
@@ -59,7 +59,7 @@ const DummyData = () => {
       image: FirstImage,
       like: 10,
       rating: 3.5,
-      postData: new Date().toISOString(),
+      postData: '2022-04-01T14:49:07.034Z',
       totalComments: 15,
       user: {
         name: 'Sharmin',
@@ -107,7 +107,7 @@ const DummyData = () => {
       image: FirstImage,
       like: 15,
       rating: 4.0,
-      postData: new Date().toISOString(),
+      postData: '2022-01-30T14:49:07.034Z',
       totalComments: 15,
       user: {
         name: 'Nozibul',

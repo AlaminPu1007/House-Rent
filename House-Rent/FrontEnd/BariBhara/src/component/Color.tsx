@@ -4,6 +4,7 @@ const ColorValue = () => {
     WHITE: '#FFFFFF',
     BLACK: '#000000',
     RED: 'red',
+    DDD: '#DDDDDD',
     //Header background color
     Header_background: '#5D00E2',
     StatusBar_Background: '#f9f9f9',

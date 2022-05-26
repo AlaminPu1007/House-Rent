@@ -68,6 +68,6 @@ export default PostTime;
 const styles = StyleSheet.create({
   textStyle: {
     fontSize: ResponsiveFontSize(10),
-    color: ColorValue.Active_Bottom,
+    color: ColorValue.Bike_Text,
   },
 });
