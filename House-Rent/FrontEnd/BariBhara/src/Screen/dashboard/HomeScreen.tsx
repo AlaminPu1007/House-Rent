@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, FlatList} from 'react-native';
 import React, {useEffect} from 'react';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -11,6 +11,7 @@ import Header from '../AuthScreen/Header';
 import {heightToDp} from '../../component/Responsive';
 import {StorePostData} from '../../redux/dashboardRedux/DashboardActionMethod';
 import {useAppSelector} from '../../redux/RootReducers';
+import RenderPost from './homeComponent/RenderPost';
 
 //define color function
 const ColorValue = Color();
@@ -31,6 +32,11 @@ const HomeScreen = ({navigation}: Props) => {
   useEffect(() => {
     StorePostData({data: Data});
   }, []);
+  // --- flat list related hing goes here ---
+  const renderMethod = ({item}: any) => {
+    return <RenderPost item={item} />;
+  };
+  const keyExtractorMethod = (item: any) => item.id;
 
   return (
     <SafeAreaView style={styles.SafeAreaViewStyle}>
@@ -38,23 +44,15 @@ const HomeScreen = ({navigation}: Props) => {
       <View>
         <Header navigation={navigation} title="Home" Value={0} />
       </View>
-      <ScrollView
-        keyboardShouldPersistTaps="handled"
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.ContentStyle}>
-        <View style={styles.BodyViewStyle}>
-          {/* render our all array of data */}
-          <View>
-            {post?.map((item: any) => {
-              return (
-                <View key={item.id}>
-                  <Text>{item.description}</Text>
-                </View>
-              );
-            })}
-          </View>
-        </View>
-      </ScrollView>
+      <View style={styles.flatListView}>
+        <FlatList
+          data={post}
+          keyboardShouldPersistTaps="always"
+          showsVerticalScrollIndicator={false}
+          keyExtractor={keyExtractorMethod}
+          renderItem={renderMethod}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -73,6 +71,9 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     alignItems: 'center',
+    paddingVertical: heightToDp(1),
+  },
+  flatListView: {
     paddingVertical: heightToDp(1),
   },
 });

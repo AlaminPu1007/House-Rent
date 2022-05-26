@@ -13,7 +13,7 @@ export enum ActionType {
 // for Increment operation
 interface actionStoreDashboardData {
   type: ActionType.STORE_DASHBOARD_DATA;
-  payload: Array<object>;
+  payload: any;
 }
 /// OUR ALL INTERFACE WILL BE DEFINE HERE(END)
 

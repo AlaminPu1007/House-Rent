@@ -15,7 +15,7 @@ const {dispatch} = store;
  * thats why we implemented it with redux
  */
 type storePostDataProps = {
-  data: Array<object>;
+  data: any;
 };
 export const StorePostData = async ({data}: storePostDataProps) => {
   try {
