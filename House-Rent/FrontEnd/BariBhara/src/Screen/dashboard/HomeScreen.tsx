@@ -75,5 +75,6 @@ const styles = StyleSheet.create({
   },
   flatListView: {
     paddingVertical: heightToDp(1),
+    flex: 1,
   },
 });
