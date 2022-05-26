@@ -22,7 +22,7 @@ type Props = BottomTabScreenProps<RootStackParamList, 'Setting'>;
 
 const HomeScreen = ({navigation}: Props) => {
   // bring dashboard redux initial state
-  const {post} = useAppSelector<any>(state => state.dashboardReducer);
+  const {post} = useAppSelector(state => state.dashboardReducer);
 
   /**
    * after first visit on this screen

@@ -7,7 +7,7 @@ import {Action, ActionType} from './DashboardActionCreator';
 
 /// DEFINE PROPS OF INITIAL STATE
 export interface dashboardState {
-  post: [];
+  post: Array<object>;
 }
 
 /// INITIAL STATE OF DASHBOARD REDUCER
