@@ -3,6 +3,7 @@ import React, {FC} from 'react';
 import UserArea from './UserArea';
 import {heightToDp, ResponsiveFontSize} from '../../../component/Responsive';
 import Color from '../../../component/Color';
+import ImageComponent from './ImageComponent';
 
 const ColorValue = Color();
 interface Props {
@@ -15,10 +16,13 @@ const RenderPost: FC<Props> = ({item}) => {
       {/* body container */}
       <View style={styles.bodyContainer}>
         {/* Render user avatar  */}
-        <View style={styles.userAreaView}>
+        <View style={styles.container}>
           <UserArea data={item} />
         </View>
-        <Text>{item.description}</Text>
+        {/* render Image component goes here */}
+        <View style={styles.container}>
+          <ImageComponent data={item} />
+        </View>
       </View>
     </View>
   );
@@ -39,9 +43,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: ColorValue.DDD,
     borderRadius: ResponsiveFontSize(5),
-  },
-  userAreaView: {
-    width: '100%',
-    alignItems: 'center',
   },
 });
