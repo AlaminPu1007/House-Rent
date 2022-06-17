@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React, {FC} from 'react';
 import UserArea from './UserArea';
 import {heightToDp, ResponsiveFontSize} from '../../../component/Responsive';
