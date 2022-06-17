@@ -16,13 +16,13 @@ const ImageComponent = ({data}: any) => {
     <View style={styles.container}>
       {/* Image will be render here */}
       <View style={styles.imageMapView}>
-        {data?.images.map(i => {
+        {data?.images.map((item: any) => {
           return (
             <TouchableOpacity
               activeOpacity={0.8}
-              key={i.id}
+              key={item.id}
               style={styles.imageContainer}>
-              <Image source={i.image1} style={styles.imageStyle} />
+              <Image source={item.image1} style={styles.imageStyle} />
             </TouchableOpacity>
           );
         })}
