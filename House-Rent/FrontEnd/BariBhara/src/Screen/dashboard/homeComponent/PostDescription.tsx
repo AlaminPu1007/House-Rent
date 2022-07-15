@@ -30,10 +30,10 @@ const PostDescription = ({data}: any) => {
         </Text>
       </TouchableOpacity>
       {/* add more button */}
-      <View>
+      <View style={styles.moreView}>
         {activeMoreButton > 3 ? (
           <TouchableOpacity>
-            <Text>More</Text>
+            <Text style={styles.moreText}>More</Text>
           </TouchableOpacity>
         ) : null}
       </View>
@@ -46,7 +46,6 @@ export default PostDescription;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    alignItems: 'center',
     paddingBottom: heightToDp(0.5),
   },
   descriptionButton: {
@@ -55,5 +54,13 @@ const styles = StyleSheet.create({
   descriptionText: {
     fontSize: ConstValue.regularFontSize,
     color: ColorValue.BLACK,
+  },
+  moreView: {
+    width: '100%',
+  },
+  moreText: {
+    color: ColorValue.Activity_Color,
+    paddingTop: heightToDp(1),
+    fontSize: ConstValue.regularFontSize,
   },
 });
