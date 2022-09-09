@@ -32,7 +32,7 @@ const HomeScreen = ({navigation}: Props) => {
   useEffect(() => {
     StorePostData({data: Data});
   }, []);
-  // --- flat list related hing goes here ---
+  // --- flat list related thing goes here ---
   const renderMethod = ({item}: any) => {
     return <RenderPost item={item} />;
   };

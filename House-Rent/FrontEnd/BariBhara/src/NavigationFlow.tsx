@@ -9,20 +9,17 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 ///redux stuff
 import {useAppSelector} from './redux/RootReducers';
 import {shallowEqual} from 'react-redux';
-//dashboard screen import here
-import HomeScreen from './Screen/dashboard/HomeScreen';
-import SettingScreen from './Screen/dashboard/SettingScreen';
+
 import {AutomaticSignIn} from './redux/authRedux/AuthActionMethod';
+import HomeTabNavigation from './rootNavigation/dashboard/homeTab';
 //for tab navigation
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+// import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 // type for auth stack
 export type RootStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
-  Home: undefined;
   forgetPassword: undefined;
-  Setting: undefined;
 };
 
 const AuthStack = createNativeStackNavigator<RootStackParamList>();
@@ -38,28 +35,6 @@ const StackAuthNavigation = () => {
         component={ForgetPasswordScreen}
       />
     </AuthStack.Navigator>
-  );
-};
-
-//define tab navigation
-const Tab = createBottomTabNavigator<RootStackParamList>();
-
-//dashboard navigation flow
-const HomeTabNavigation = () => {
-  return (
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarIconStyle: {display: 'none'},
-
-        tabBarLabelStyle: {
-          fontWeight: '700',
-          fontSize: 15,
-        },
-      }}>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Setting" component={SettingScreen} />
-    </Tab.Navigator>
   );
 };
 
