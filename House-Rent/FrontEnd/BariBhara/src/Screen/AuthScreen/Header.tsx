@@ -39,7 +39,9 @@ const Header: FC<Props> = ({navigation, Value, title}) => {
       {/* if Back Button Exists */}
       {/* Header Title  */}
       <View>
-        <Text style={styles.Title}>{title}</Text>
+        <Text numberOfLines={1} style={styles.Title}>
+          {title}
+        </Text>
       </View>
       {/* Null View Area */}
       <View>

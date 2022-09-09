@@ -65,15 +65,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: ColorValue.StatusBar_Background,
   },
-  ContentStyle: {
-    flexGrow: 1,
-  },
-  BodyViewStyle: {
-    flex: 1,
-    width: '100%',
-    alignItems: 'center',
-    paddingVertical: heightToDp(1),
-  },
   flatListView: {
     paddingVertical: heightToDp(1),
     flex: 1,
