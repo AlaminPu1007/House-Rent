@@ -5,13 +5,23 @@ import {
   View,
   Dimensions,
 } from 'react-native';
-import React from 'react';
+import React, {FC} from 'react';
 import {heightToDp, ResponsiveFontSize} from '../../../component/Responsive';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootTabParamList} from '../../../rootNavigation/dashboard/homeTab/HomeTab';
 
+import {useNavigation} from '@react-navigation/native';
 //get device with
 const {width, height} = Dimensions.get('window');
 
-const ImageComponent = ({data}: any) => {
+//get props of Tab-Navigation stuff
+type Props = NativeStackScreenProps<RootTabParamList, 'imagePreview'>;
+
+const ImageComponent: FC<Props> = ({data}: any) => {
+  //define use Navigation
+  const navigation: any = useNavigation<Props>();
+  //navigate to single preview component of an specific image
+  const navigateToImagePreview = () => navigation.navigate('imagePreview');
   return (
     <View style={styles.container}>
       {/* Image will be render here */}
@@ -21,6 +31,7 @@ const ImageComponent = ({data}: any) => {
             <TouchableOpacity
               activeOpacity={0.8}
               key={item.id}
+              onPress={navigateToImagePreview}
               style={styles.imageContainer}>
               <Image source={item.image1} style={styles.imageStyle} />
             </TouchableOpacity>
