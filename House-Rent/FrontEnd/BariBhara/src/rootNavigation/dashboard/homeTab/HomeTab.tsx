@@ -1,7 +1,10 @@
 import React from 'react';
 
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 //for tab navigation
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+//bring all dashboard component
 import HomeScreen from '../../../Screen/dashboard/HomeScreen';
 import SettingScreen from '../../../Screen/dashboard/SettingScreen';
 
@@ -9,6 +12,7 @@ import SettingScreen from '../../../Screen/dashboard/SettingScreen';
 export type RootTabParamList = {
   Home: undefined;
   Setting: undefined;
+  Dashboard: undefined;
 };
 
 //define tab navigation
@@ -18,6 +22,7 @@ const Tab = createBottomTabNavigator<RootTabParamList>();
 const HomeTabNavigation = () => {
   return (
     <Tab.Navigator
+      initialRouteName="Dashboard"
       screenOptions={{
         headerShown: false,
         tabBarIconStyle: {display: 'none'},
@@ -27,10 +32,24 @@ const HomeTabNavigation = () => {
           fontSize: 15,
         },
       }}>
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Dashboard" component={HomeScreen} />
       <Tab.Screen name="Setting" component={SettingScreen} />
     </Tab.Navigator>
   );
 };
 
-export {HomeTabNavigation};
+//define Stack with Tab,and without tab navigation
+// to preview some task, such as view single image without tab nav
+const Stack = createNativeStackNavigator<RootTabParamList>();
+const StackNav = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen name="Home" component={HomeTabNavigation} />
+    </Stack.Navigator>
+  );
+};
+
+export {StackNav};

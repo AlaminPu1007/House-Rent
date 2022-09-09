@@ -1,2 +1,2 @@
-import {HomeTabNavigation} from './HomeTab';
+import {StackNav as HomeTabNavigation} from './HomeTab';
 export default HomeTabNavigation;
