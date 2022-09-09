@@ -1,8 +1,8 @@
-//This component will help us to preview single image on specific post
+//This component will help us to preview all image on specific post
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const SingleImagePreview = () => {
+const ImagePreview = ({navigation, router}: any) => {
   return (
     <View>
       <Text>SingleI mage Preview</Text>
@@ -10,6 +10,6 @@ const SingleImagePreview = () => {
   );
 };
 
-export default SingleImagePreview;
+export default ImagePreview;
 
 const styles = StyleSheet.create({});

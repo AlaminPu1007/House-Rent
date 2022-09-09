@@ -3,7 +3,7 @@ import React, {useEffect} from 'react';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
-import {RootStackParamList} from '../../NavigationFlow';
+
 //bring fake json
 import DummyData from '../../component/DummyData';
 import Color from '../../component/Color';
@@ -12,6 +12,7 @@ import {heightToDp} from '../../component/Responsive';
 import {StorePostData} from '../../redux/dashboardRedux/DashboardActionMethod';
 import {useAppSelector} from '../../redux/RootReducers';
 import RenderPost from './homeComponent/RenderPost';
+import {RootTabParamList} from '../../rootNavigation/dashboard/homeTab/HomeTab';
 
 //define color function
 const ColorValue = Color();
@@ -19,7 +20,7 @@ const ColorValue = Color();
 const Data = DummyData();
 
 //get screen props
-type Props = BottomTabScreenProps<RootStackParamList, 'Setting'>;
+type Props = BottomTabScreenProps<RootTabParamList, 'Setting'>;
 
 const HomeScreen = ({navigation}: Props) => {
   // bring dashboard redux initial state

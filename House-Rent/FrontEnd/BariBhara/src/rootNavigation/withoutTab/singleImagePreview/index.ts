@@ -1,2 +1,2 @@
-import SingleImagePreview from './SingleImagePreview';
-export default SingleImagePreview;
+import ImagePreview from './ImagePreview';
+export default ImagePreview;

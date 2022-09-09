@@ -12,7 +12,7 @@ import {RootTabParamList} from '../../../rootNavigation/dashboard/homeTab/HomeTa
 
 import {useNavigation} from '@react-navigation/native';
 //get device with
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 //get props of Tab-Navigation stuff
 type Props = NativeStackScreenProps<RootTabParamList, 'imagePreview'>;
@@ -21,7 +21,9 @@ const ImageComponent: FC<Props> = ({data}: any) => {
   //define use Navigation
   const navigation: any = useNavigation<Props>();
   //navigate to single preview component of an specific image
-  const navigateToImagePreview = () => navigation.navigate('imagePreview');
+  const navigateToImagePreview = () =>
+    navigation.navigate('imagePreview', {postId: data.id});
+
   return (
     <View style={styles.container}>
       {/* Image will be render here */}
