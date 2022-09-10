@@ -17,18 +17,21 @@ const {width} = Dimensions.get('window');
 //get props of Tab-Navigation stuff
 type Props = NativeStackScreenProps<RootTabParamList, 'postPreview'>;
 
-const ImageComponent: FC<Props> = ({data}: any) => {
+const ImageComponent: FC<Props> = (props: any) => {
+  //destruct property from props
+  const {images, id} = props;
+
   //define use Navigation
   const navigation: any = useNavigation<Props>();
   //navigate to single preview component of an specific image
   const navigateToImagePreview = () =>
-    navigation.navigate('postPreview', {postId: data.id});
+    navigation.navigate('postPreview', {postId: id});
 
   return (
     <View style={styles.container}>
       {/* Image will be render here */}
       <View style={styles.imageMapView}>
-        {data?.images.map((item: any) => {
+        {images.map((item: any) => {
           return (
             <TouchableOpacity
               activeOpacity={0.8}

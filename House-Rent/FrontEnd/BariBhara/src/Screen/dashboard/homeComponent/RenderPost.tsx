@@ -26,7 +26,7 @@ const RenderPost: FC<Props> = ({item}) => {
         </View>
         {/* render Image component goes here */}
         <View style={styles.container}>
-          <ImageComponent data={item} />
+          <ImageComponent {...item} />
         </View>
       </View>
     </View>
