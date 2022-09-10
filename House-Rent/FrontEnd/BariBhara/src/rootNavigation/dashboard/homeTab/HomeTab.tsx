@@ -9,6 +9,9 @@ import HomeScreen from '../../../Screen/dashboard/HomeScreen';
 import SettingScreen from '../../../Screen/dashboard/SettingScreen';
 //bring all component to show, without tab-navigation
 import PostPreview from '../../withoutTab/singleImagePreview';
+// @ts-ignore
+import Feather from 'react-native-vector-icons/Feather';
+import {ResponsiveFontSize} from '../../../component/Responsive';
 
 // type for auth stack
 export type RootTabParamList = {
@@ -28,15 +31,32 @@ const HomeTabNavigation = () => {
       initialRouteName="Dashboard"
       screenOptions={{
         headerShown: false,
-        tabBarIconStyle: {display: 'none'},
+        // tabBarIconStyle: {display: 'none'},
 
         tabBarLabelStyle: {
           fontWeight: '700',
           fontSize: 15,
+          display: 'none',
         },
       }}>
-      <Tab.Screen name="Dashboard" component={HomeScreen} />
-      <Tab.Screen name="Setting" component={SettingScreen} />
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Feather name="home" size={size} color={color} />
+          ),
+        }}
+        name="Dashboard"
+        component={HomeScreen}
+      />
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Feather name="settings" size={size} color={color} />
+          ),
+        }}
+        name="Setting"
+        component={SettingScreen}
+      />
     </Tab.Navigator>
   );
 };

@@ -12,6 +12,8 @@ import PostTime from '../../../component/PostTime';
 import Color from '../../../component/Color';
 import ConstValue from '../../../component/ConstValue';
 import {heightToDp, ResponsiveFontSize} from '../../../component/Responsive';
+//@ts-ignore
+import Entypo from 'react-native-vector-icons/Entypo';
 
 const ColorValue = Color();
 
@@ -38,9 +40,11 @@ const UserArea = ({data}: any) => {
       </View>
       {/* post material menu option goes here */}
       <TouchableOpacity activeOpacity={0.5} style={styles.menuView}>
-        <Image
-          style={styles.menuImageStyle}
-          source={require('../../../../assests/image/menu_vertical.png')}
+        <Entypo
+          name="dots-three-vertical"
+          size={ResponsiveFontSize(20)}
+          color={ColorValue.Black}
+          style={styles.menuStyle}
         />
       </TouchableOpacity>
     </View>
@@ -67,18 +71,17 @@ const styles = StyleSheet.create({
     borderRadius: ResponsiveFontSize(100),
   },
   userNameArea: {
-    width: '80%',
+    width: '75%',
   },
   nameTextStyle: {
     color: ColorValue.BLACK,
     fontSize: ConstValue.regularFontSize + 1,
   },
   menuView: {
-    width: '5%',
+    width: '10%',
     alignItems: 'center',
   },
-  menuImageStyle: {
-    width: width * 0.09,
-    height: width * 0.09,
+  menuStyle: {
+    paddingVertical: 5,
   },
 });
