@@ -1,2 +1,2 @@
-import ImagePreview from './ImagePreview';
-export default ImagePreview;
+import PostPreview from './PostPreview';
+export default PostPreview;

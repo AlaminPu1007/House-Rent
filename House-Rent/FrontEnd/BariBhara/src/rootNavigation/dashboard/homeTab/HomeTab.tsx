@@ -8,14 +8,14 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../../../Screen/dashboard/HomeScreen';
 import SettingScreen from '../../../Screen/dashboard/SettingScreen';
 //bring all component to show, without tab-navigation
-import ImagePreview from '../../withoutTab/singleImagePreview';
+import PostPreview from '../../withoutTab/singleImagePreview';
 
 // type for auth stack
 export type RootTabParamList = {
   Home: undefined;
   Setting: undefined;
   Dashboard: undefined;
-  imagePreview: {postId: string} | undefined;
+  postPreview: {postId: string} | undefined;
 };
 
 //define tab navigation
@@ -51,7 +51,7 @@ const StackNav = () => {
         headerShown: false,
       }}>
       <Stack.Screen name="Home" component={HomeTabNavigation} />
-      <Stack.Screen name="imagePreview" component={ImagePreview} />
+      <Stack.Screen name="postPreview" component={PostPreview} />
     </Stack.Navigator>
   );
 };

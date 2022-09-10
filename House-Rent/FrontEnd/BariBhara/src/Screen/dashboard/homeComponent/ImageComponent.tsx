@@ -15,14 +15,14 @@ import {useNavigation} from '@react-navigation/native';
 const {width} = Dimensions.get('window');
 
 //get props of Tab-Navigation stuff
-type Props = NativeStackScreenProps<RootTabParamList, 'imagePreview'>;
+type Props = NativeStackScreenProps<RootTabParamList, 'postPreview'>;
 
 const ImageComponent: FC<Props> = ({data}: any) => {
   //define use Navigation
   const navigation: any = useNavigation<Props>();
   //navigate to single preview component of an specific image
   const navigateToImagePreview = () =>
-    navigation.navigate('imagePreview', {postId: data.id});
+    navigation.navigate('postPreview', {postId: data.id});
 
   return (
     <View style={styles.container}>

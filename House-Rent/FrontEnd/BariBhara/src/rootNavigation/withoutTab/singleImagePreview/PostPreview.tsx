@@ -11,7 +11,7 @@ import {heightToDp} from '../../../component/Responsive';
 //define color function
 const ColorValue = Color();
 
-const ImagePreview = ({navigation, route}: any) => {
+const PostPreview = ({navigation, route}: any) => {
   //destruct post-id from route
   const {postId = null} = route.params;
   //define use-state
@@ -46,7 +46,7 @@ const ImagePreview = ({navigation, route}: any) => {
         <Header
           navigation={navigation}
           title={storePostData?.title || 'Image-Preview'}
-          Value={0}
+          Value={1}
         />
       </View>
       <View style={styles.flatListView}>
@@ -56,7 +56,7 @@ const ImagePreview = ({navigation, route}: any) => {
   );
 };
 
-export default ImagePreview;
+export default PostPreview;
 
 const styles = StyleSheet.create({
   SafeAreaViewStyle: {
