@@ -22,7 +22,7 @@ const RenderPost: FC<Props> = ({item}) => {
         </View>
         {/* Post description */}
         <View>
-          <PostDescription data={item} />
+          <PostDescription description={item?.description} />
         </View>
         {/* render Image component goes here */}
         <View style={styles.container}>

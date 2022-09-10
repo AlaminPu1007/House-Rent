@@ -1,12 +1,18 @@
 //This component will help us to preview all image on specific post
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useState, useEffect} from 'react';
 //bring root dummy json data
 import DummyData from '../../../component/DummyData';
 import Header from '../../../Screen/AuthScreen/Header';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Color from '../../../component/Color';
-import {heightToDp} from '../../../component/Responsive';
+import {
+  heightToDp,
+  ResponsiveFontSize,
+  widthToDp,
+} from '../../../component/Responsive';
+import PostDescription from '../../../Screen/dashboard/homeComponent/PostDescription';
+import ImagesComponent from './ImagesComponent';
 
 //define color function
 const ColorValue = Color();
@@ -49,9 +55,16 @@ const PostPreview = ({navigation, route}: any) => {
           Value={1}
         />
       </View>
-      <View style={styles.flatListView}>
-        <Text>Single image Preview {postId}</Text>
-      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.flatListView}>
+          <View style={styles.bodyContainer}>
+            {/* Post description component goes here */}
+            <PostDescription description={storePostData?.description} />
+            {/* Display all images */}
+            <ImagesComponent Images={storePostData?.images} />
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -66,5 +79,16 @@ const styles = StyleSheet.create({
   flatListView: {
     paddingVertical: heightToDp(1),
     flex: 1,
+    alignItems: 'center',
+  },
+  bodyContainer: {
+    width: '95%',
+    alignItems: 'center',
+    marginBottom: heightToDp(1.5),
+    paddingVertical: heightToDp(1),
+    paddingHorizontal: widthToDp(1),
+    borderWidth: 1,
+    borderColor: ColorValue.DDD,
+    borderRadius: ResponsiveFontSize(5),
   },
 });

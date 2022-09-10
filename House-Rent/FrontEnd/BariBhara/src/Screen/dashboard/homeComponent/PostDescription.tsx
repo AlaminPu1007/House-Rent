@@ -6,7 +6,7 @@ import {heightToDp} from '../../../component/Responsive';
 
 const ColorValue = Color();
 
-const PostDescription = ({data}: any) => {
+const PostDescription = ({description}: any) => {
   // define use state here
   const [activeMoreButton, setActiveMoreButton] = useState<boolean>(false);
   const [textShown, setTextShown] = useState<boolean>(false);
@@ -29,7 +29,7 @@ const PostDescription = ({data}: any) => {
           onTextLayout={onTextLayout}
           numberOfLines={textShown ? undefined : 3}
           style={styles.descriptionText}>
-          {data.description}
+          {description}
         </Text>
       </TouchableOpacity>
       {/* add more button */}
