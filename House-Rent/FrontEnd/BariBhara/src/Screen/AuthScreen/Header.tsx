@@ -2,6 +2,8 @@ import React, {FC} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Color from '../../component/Color';
 import ConstValue from '../../component/ConstValue';
+// @ts-ignore
+import AntDesign from 'react-native-vector-icons/AntDesign';
 //import Responsive height, width & fontsize
 import {
   widthToDp,
@@ -30,7 +32,12 @@ const Header: FC<Props> = ({navigation, Value, title}) => {
             activeOpacity={0.5}
             style={styles.BackButtonStyle}
             onPress={NavigateToBackMethod}>
-            <Text style={styles.BackArrow}>Back</Text>
+            {/* <Text style={styles.BackArrow}>Back</Text> */}
+            <AntDesign
+              name="arrowleft"
+              size={ResponsiveFontSize(25)}
+              color={ColorValue.WHITE}
+            />
           </TouchableOpacity>
         </View>
       ) : (
