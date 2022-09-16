@@ -31,7 +31,11 @@ const RenderPost: FC<Props> = ({item}) => {
         </View>
         {/* Like/comment component goes here */}
         <View style={styles.container}>
-          <LikeComponent />
+          <LikeComponent
+            postId={item.id}
+            totalLike={item.like}
+            totalComment={item.totalComments}
+          />
         </View>
       </View>
     </View>
