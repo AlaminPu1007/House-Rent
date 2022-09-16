@@ -5,6 +5,7 @@ import {heightToDp, ResponsiveFontSize} from '../../../component/Responsive';
 import Color from '../../../component/Color';
 import ImageComponent from './ImageComponent';
 import PostDescription from './PostDescription';
+import LikeComponent from './LikeComponent';
 
 const ColorValue = Color();
 interface Props {
@@ -27,6 +28,10 @@ const RenderPost: FC<Props> = ({item}) => {
         {/* render Image component goes here */}
         <View style={styles.container}>
           <ImageComponent {...item} />
+        </View>
+        {/* Like/comment component goes here */}
+        <View style={styles.container}>
+          <LikeComponent />
         </View>
       </View>
     </View>
