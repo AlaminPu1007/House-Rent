@@ -20,10 +20,6 @@ interface Props {
 }
 
 const LikeComponent: FC<Props> = ({postId, totalLike, totalComment}) => {
-  function someWorklet(greeting: string) {
-    'worklet';
-    console.log("Hey I'm running on the UI thread");
-  }
   return (
     <View style={styles.container}>
       <View style={styles.likeCommentValue}>
@@ -31,12 +27,7 @@ const LikeComponent: FC<Props> = ({postId, totalLike, totalComment}) => {
         <Text style={styles.textStyle}>{totalComment} Comments</Text>
       </View>
       <View style={styles.likeCommentValue}>
-        <TouchableOpacity
-          style={styles.likeButton}
-          activeOpacity={0.5}
-          onPress={() => {
-            someWorklet('someWorklet');
-          }}>
+        <TouchableOpacity style={styles.likeButton} activeOpacity={0.5}>
           <AntDesign
             name="like2"
             size={ResponsiveFontSize(30)}
