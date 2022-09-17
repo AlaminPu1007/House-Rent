@@ -1,4 +1,10 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  GestureResponderEvent,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {FC} from 'react';
 //@ts-ignore
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -12,14 +18,26 @@ import {
 } from '../../../component/Responsive';
 import Color from '../../../component/Color';
 import ConstValue from '../../../component/ConstValue';
+import {LikeOnSpecifPost} from '../../../redux/dashboardRedux/DashboardActionMethod';
 const ColorValue = Color();
 interface Props {
   postId: string;
   totalLike: string;
   totalComment: string;
+  myLike: boolean;
 }
 
-const LikeComponent: FC<Props> = ({postId, totalLike, totalComment}) => {
+const LikeComponent: FC<Props> = ({
+  postId,
+  totalLike,
+  totalComment,
+  myLike,
+}) => {
+  //Like method goes here
+  const LikeMethod = () => {
+    if (!myLike) LikeOnSpecifPost({postId, myLike: !myLike});
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.likeCommentValue}>
@@ -27,11 +45,14 @@ const LikeComponent: FC<Props> = ({postId, totalLike, totalComment}) => {
         <Text style={styles.textStyle}>{totalComment} Comments</Text>
       </View>
       <View style={styles.likeCommentValue}>
-        <TouchableOpacity style={styles.likeButton} activeOpacity={0.5}>
+        <TouchableOpacity
+          style={styles.likeButton}
+          activeOpacity={0.5}
+          onPress={LikeMethod}>
           <AntDesign
             name="like2"
             size={ResponsiveFontSize(30)}
-            color={ColorValue.BLACK}
+            color={myLike ? ColorValue.Home_Tab_Color : ColorValue.BLACK}
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.likeButton} activeOpacity={0.5}>

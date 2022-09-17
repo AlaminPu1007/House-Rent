@@ -35,6 +35,7 @@ const RenderPost: FC<Props> = ({item}) => {
             postId={item.id}
             totalLike={item.like}
             totalComment={item.totalComments}
+            myLike={item?.my_like}
           />
         </View>
       </View>
